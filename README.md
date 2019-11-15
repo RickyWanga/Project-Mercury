@@ -22,7 +22,9 @@ faranno guadagnare punti.
 
 ## Specifiche di codice
 La mappa viene generata un livello alla volta dinamicamente (?) e deve essere implementata con caratteri ASCII, lo stesso vale per i vari 'elementi' (auto, ostacoli...);
+
 È vietato usare librerie grafiche;
+
 È obbligatorio usare le classi, per ogni classe va creato un file .hpp che la definisce e un file .cpp che ne implementa il comportamento.
 
 
