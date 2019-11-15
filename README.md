@@ -1,3 +1,5 @@
+-Titolo/Nome del progetto da definire-
+
 -Valutazione Progetto:
 Il gioco è parte integrante dello scritto ed è obbligatorio;
 C'è un cap massimo di 8 punti e lo scritto è da 24, quindi si può anche tranquillamente arrivare alla lode;
