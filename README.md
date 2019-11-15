@@ -1,16 +1,16 @@
 # Titolo/Nome del progetto da definire
 
 ## Valutazione progetto
-Il gioco è parte integrante dello scritto ed è obbligatorio;
-C'è un cap massimo di 8 punti e lo scritto è da 24, quindi si può anche tranquillamente arrivare alla lode;
-In base alla qualità della mansione svolta da ciascuno potremo ricevere valutazioni individuali differenti, quindi un codice coeso, intuitivo e ben indentato farà la differenza;
-Abbiamo UNA sola consegna, se non prendiamo almeno 2 punti dovremo consegnare un nuovo progetto.
+- Il gioco è parte integrante dello scritto ed è **obbligatorio**;
+- C'è un cap massimo di 8 punti e lo scritto è da 24, quindi si può anche *tranquillamente* arrivare alla lode;
+- In base alla qualità della mansione svolta da ciascuno potremo ricevere valutazioni individuali differenti, quindi un codice coeso, intuitivo e ben indentato farà la differenza;
+- Abbiamo **UNA** sola consegna, se non prendiamo almeno 2 punti dovremo consegnare un nuovo progetto.
 
 ## Indicazioni di consegna
-Il progetto è da consegnare due giorni prima dell'orale (da chiedere se si può consegnare anche prima);
-Dobbiamo essere tutti presenti allo stesso orale;
-Insieme ai vari file e ReadMe, dobbiamo anche consegnare una relazione di 3/4 pagine, dove vengono spiegate le scelte che facciamo e in generale il percorso progettuale del nostro gioco;
-Le mail a cui consegnare sono giuseppe.lisanti@unibo.it e adele.veschetti2@unibo.it.
+- Il progetto è da consegnare due giorni prima dell'orale (da chiedere se si può consegnare anche prima);
+- Dobbiamo essere tutti presenti allo stesso orale;
+- Insieme ai vari file e ReadMe, dobbiamo anche consegnare una relazione di 3/4 pagine, dove vengono spiegate le scelte che facciamo e in generale il percorso progettuale del nostro gioco;
+- Le mail a cui consegnare sono giuseppe.lisanti@unibo.it e adele.veschetti2@unibo.it.
 
 ## Specifiche di gioco
 Il progetto consiste nell'implementare un gioco di corse automobilistiche, dove, chiaramente, si comanda un'auto;
