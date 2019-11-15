@@ -14,12 +14,15 @@
 
 ## Specifiche di gioco
 Il progetto consiste nell'implementare un gioco di corse automobilistiche, dove, chiaramente, si comanda un'auto;
+
 Ci sono più livelli e il metodo di avanzamento è basato sul punteggio, più alto il livello, maggiore sarà la difficoltà, ma non ci sono traguardi, l'unico stop è il game over che si verifica se si perdono tutti i punti;
 I punti sono cumulativi tra i vari livelli e se si scende sotto la soglia del livello attuale si torna al precedente;
-Durante il gioco si potranno incontrare vari ostacoli e potenziamenti (a nostra discrezione) e anche altre auto, ostacoli ad esempio buche, chiodi o la collisione con gli estremi della mappa faranno perdere punti, mentre potenziamenti come token o gas 
+Durante il gioco si potranno incontrare vari ostacoli e potenziamenti (**a nostra discrezione**) e anche altre auto, ostacoli ad esempio buche, chiodi o la collisione con gli estremi della mappa faranno perdere punti, mentre potenziamenti come token o gas 
 faranno guadagnare punti.
 
 ## Specifiche di codice
 La mappa viene generata un livello alla volta dinamicamente (?) e deve essere implementata con caratteri ASCII, lo stesso vale per i vari 'elementi' (auto, ostacoli...);
+
 È vietato usare librerie grafiche;
+
 È obbligatorio usare le classi, per ogni classe va creato un file .hpp che la definisce e un file .cpp che ne implementa il comportamento.
