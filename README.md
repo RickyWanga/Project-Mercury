@@ -25,3 +25,6 @@ La mappa viene generata un livello alla volta dinamicamente (?) e deve essere im
 
 È vietato usare librerie grafiche;
 È obbligatorio usare le classi, per ogni classe va creato un file .hpp che la definisce e un file .cpp che ne implementa il comportamento.
+=======
+# Project-Mercury
+A simple car game made with c++ and hate
