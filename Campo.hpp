@@ -2,8 +2,8 @@ class Campo
 {
     private:
         const int row = 15;
-        const int col = 15;
-        char campo[15][15];
+        const int col = 50;
+        char campo[15][50];
         void inizializza();
         void bordi();
 
