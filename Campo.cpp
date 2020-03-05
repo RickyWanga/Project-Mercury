@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Campo.hpp"
+#include <windows.h>
 using namespace std;
 
 /**********************************
@@ -56,9 +57,9 @@ Campo::Campo()
  *  inserisce un carattere 's' nella
  *  riga 'r' e colonna 'c'
 ********************************/
-void Campo::inserisci(char s, int r, int c)
+void Campo::inserisci(char s, int x, int y)
 {
-	campo[r][c] = s;
+	campo[y][x] = s;
 }
 
 /**********************************
@@ -81,7 +82,10 @@ void Campo::aggiorna()
 					campo[i][j] = ' ';
 			}
 			else
-				campo[i][j] = campo[i - 1][j];
+            {
+                if(campo[i - 1][j] == 'o') campo[i][j] = ' ';
+                else campo[i][j] = campo[i - 1][j];
+            }
 		}
 	}
 }
