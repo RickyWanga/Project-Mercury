@@ -9,6 +9,7 @@ class Campo
 
     public:
         void stampa();
+        //inserisce il carattere c nella riga x e colonna y
         void inserisci(char c, int x, int y);
         void aggiorna();
 

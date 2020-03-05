@@ -68,7 +68,11 @@ int main(int argc, char const *argv[])
 			c.aggiorna();
 
 			system("cls");
-			c.stampa(y, x);
+			c.inserisci('o', y, x);
+
+			//TODO: scegliere se mettere prima lo stampa o l'aggiorna
+			c.stampa();
+			c.aggiorna();
 		}
 	}
 
