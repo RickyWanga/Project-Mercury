@@ -6,8 +6,8 @@
 
 using namespace std;
 
-int x = 24;
-int y = 7;
+int x = 45;
+int y = 17;
 
 // toglie l'underscore lampeggiante
 void ShowConsoleCursor(bool showFlag)
@@ -104,14 +104,19 @@ void processInput(int c)
 
 int main(int argc, char const *argv[])
 {
+	HWND console = GetConsoleWindow();
+    RECT ConsoleRect;
+    GetWindowRect(console, &ConsoleRect); 
+    MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1000, 700, TRUE);
 	ShowConsoleCursor(false); //toglie l'underscore che flasha
 	Campo c;
 
 	int last = time();
 	int input = 0;
-
+	c.inserisci('x', 45, 2);
 	while (1)
 	{
+		//Sleep(10);
 		int newInput = getInput();
 		if (newInput != 0)
 		{
@@ -120,21 +125,32 @@ int main(int argc, char const *argv[])
 
 		if (time() - last >= 50)
 		{
+			setCursorPosition(0,0); //toglie i flickering
 			last = time();
 
 			processInput(input);
 			input = 0;
 
-			setCursorPosition(0,0); //toglie i flickering
 			c.inserisci('o', x, y);
 
-			//TODO: scegliere se mettere prima lo stampa o l'aggiorna
-			c.aggiorna();
+			setCursorPosition(0,0);
 			c.stampa();
+
+			if(c.checkCollisions(x,y))
+			{
+				break;
+			}
+
+			c.aggiorna();
+
 		}
 	}
 
-
+	while (1)
+	{
+		setCursorPosition(10,10);
+		cout << "perso";
+	}
 
 	return 0;
 }

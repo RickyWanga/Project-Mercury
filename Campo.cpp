@@ -83,9 +83,14 @@ void Campo::aggiorna()
 			}
 			else
             {
-                if(campo[i - 1][j] == 'o') campo[i][j] = ' ';
-                else campo[i][j] = campo[i - 1][j];
+                if(campo[i-1][j] != 'o') campo[i][j] = campo[i - 1][j];
             }
 		}
 	}
+}
+
+bool Campo::checkCollisions(int x, int y) //passare la pos dell'auto
+{
+    if(campo[y-1][x] == 'x') return true;
+    return false;
 }

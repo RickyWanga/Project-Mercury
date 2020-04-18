@@ -1,9 +1,9 @@
 class Campo
 {
     private:
-        const int row = 15;
-        const int col = 50;
-        char campo[15][50];
+        const int row = 25;
+        const int col = 60;
+        char campo[25][60];
         void inizializza();
         void bordi();
 
@@ -12,6 +12,7 @@ class Campo
         //inserisce il carattere c nella riga x e colonna y
         void inserisci(char c, int x, int y);
         void aggiorna();
+        bool checkCollisions(int x, int y);
 
         Campo();
 };
