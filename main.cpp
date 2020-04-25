@@ -114,7 +114,6 @@ void stampa(Entity e)
 	}
 }
 
-
 int main(int argc, char const *argv[])
 {
 	HWND console = GetConsoleWindow();
@@ -122,6 +121,9 @@ int main(int argc, char const *argv[])
     GetWindowRect(console, &ConsoleRect);
     MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1000, 700, TRUE);
 	ShowConsoleCursor(false); //toglie l'underscore che flasha
+
+	uint64_t t = time();
+	uint64_t delay = 200;
 
 	int input = 0;
 
@@ -147,8 +149,12 @@ int main(int argc, char const *argv[])
 		input = 0;
 
 		a.setPos(x,y);
-		o.moveDown();
 
+		if(time() - t > delay)
+		{
+			t = time();
+			o.moveDown();
+		}
 	}
 
 	return 0;
