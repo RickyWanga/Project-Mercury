@@ -4,6 +4,7 @@
 #include "Auto.hpp"
 #include "Ostacolo.hpp"
 #include "Partita.hpp"
+#include "Coda.hpp"
 #include <conio.h>
 #include <chrono>
 
@@ -114,6 +115,32 @@ void stampa(Entity e)
 	}
 }
 
+void stampaCoda(Coda coda)
+{
+	for(int i = coda.getTesta(); i<coda.getDim(); i++)
+	{
+		stampa(coda.getOstacolo(i%coda.getMaxDim()));
+	}
+}
+
+void moveCoda(Coda& coda) //fa il moveDown degli ostacoli
+{
+	for(int i = coda.getTesta(); i<coda.getDim(); i++)
+	{
+		coda.getOstacoloByRef(i%coda.getMaxDim()).moveDown();
+	}
+}
+
+void checkLimite(Coda& coda, int limite)
+{
+	if(coda.getRetro().getY() >= limite)
+	{
+		setCursorPosition(coda.getRetro().getBufferX(), coda.getRetro().getBufferY());
+		cout << " ";
+		coda.deq();
+	}
+}
+
 int main(int argc, char const *argv[])
 {
 	HWND console = GetConsoleWindow();
@@ -129,7 +156,10 @@ int main(int argc, char const *argv[])
 
 	Partita p(20,20);
 	Auto a(x,y);
-	Ostacolo o(10, 0, p.getHeight());
+	Coda coda(100);
+	Ostacolo o(10, p.getHeight());
+
+	coda.enq(o);
 
 	while (1)
 	{
@@ -143,7 +173,7 @@ int main(int argc, char const *argv[])
 		setCursorPosition(0,0); //toglie i flickering
 
 		stampa(a);
-		stampa(o);
+		stampaCoda(coda);
 
 		processInput(input);
 		input = 0;
@@ -153,7 +183,8 @@ int main(int argc, char const *argv[])
 		if(time() - t > delay)
 		{
 			t = time();
-			o.moveDown();
+			moveCoda(coda);
+			checkLimite(coda, p.getHeight());
 		}
 	}
 

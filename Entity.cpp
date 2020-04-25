@@ -8,6 +8,11 @@ Entity::Entity(int x, int y, char _c)
     c = _c;
 }
 
+Entity::Entity()
+{
+
+}
+
 int Entity::getX()
 {
     return pos.x;

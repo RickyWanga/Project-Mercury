@@ -1,7 +1,9 @@
+#include "Ostacolo.hpp"
+
 class Coda
 {
     private:
-        int *arr;    //array
+        Ostacolo *arr;    //array
         int max_dim; //dimensione max
         int testa;   //puntatore alla testa
         int retro;    //puntatore al retro
@@ -11,9 +13,13 @@ class Coda
         Coda(int n);
 
         void deq();
-        void enq(int i);
+        void enq(Ostacolo e);
         bool isEmpty();
         bool isFull();
         int getDim();
-        int getRetro();
+        int getMaxDim();
+        int getTesta();
+        Ostacolo getRetro();
+        Ostacolo getOstacolo(int pos);
+        Ostacolo& getOstacoloByRef(int pos);
 };

@@ -1,5 +1,5 @@
-game: main.o Entity.o Auto.o Ostacolo.o Partita.o
-	g++ -o game main.o Entity.o Auto.o Ostacolo.o Partita.o
+game: main.o Entity.o Auto.o Ostacolo.o Partita.o Coda.o
+	g++ -o game main.o Entity.o Auto.o Ostacolo.o Partita.o Coda.o
 
 main.o: main.cpp
 	g++ -c main.cpp
@@ -15,3 +15,6 @@ Entity.o: Entity.cpp Entity.hpp
 
 Partita.o: Partita.cpp Partita.hpp
 	g++ -c Partita.cpp
+
+Coda.o: Coda.cpp Coda.hpp
+	g++ -c Coda.cpp

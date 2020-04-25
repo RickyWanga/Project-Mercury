@@ -1,16 +1,17 @@
 #include "Ostacolo.hpp"
 #include "Partita.hpp"
 
-Ostacolo::Ostacolo(int x, int y, int hL):Entity(x, y, 'O')
+Ostacolo::Ostacolo(int x, int hL):Entity(x, 0, 'O')
 {
     heightLimit = hL;
 }
 
+Ostacolo::Ostacolo()
+{
+
+}
+
 void Ostacolo::moveDown()
 {
-    if(pos.y+1 < heightLimit)
-    {
-        setBuffer();
-        pos.y++;
-    }
+    setPos(getX(), getY()+1);
 }

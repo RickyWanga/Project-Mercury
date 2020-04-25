@@ -15,6 +15,7 @@ class Entity
 
     public:
         Entity(int x, int y, char _c);
+        Entity();
 
         int getX();
         int getY();
