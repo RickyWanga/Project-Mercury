@@ -1,6 +1,9 @@
 #include <iostream>
 #include <windows.h>
-#include "campo.hpp"
+#include "Entity.hpp"
+#include "Auto.hpp"
+#include "Ostacolo.hpp"
+#include "Partita.hpp"
 #include <conio.h>
 #include <chrono>
 
@@ -100,58 +103,56 @@ void processInput(int c)
 		}
 }
 
+void stampa(Entity e)
+{
+	if(e.getBufferX() != e.getX() || e.getBufferY() != e.getY())
+	{
+		setCursorPosition(e.getBufferX(), e.getBufferY());
+		cout << " ";
+		setCursorPosition(e.getX(), e.getY());
+		cout << e.getChar();
+	}
+}
 
 
 int main(int argc, char const *argv[])
 {
 	HWND console = GetConsoleWindow();
     RECT ConsoleRect;
-    GetWindowRect(console, &ConsoleRect); 
+    GetWindowRect(console, &ConsoleRect);
     MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1000, 700, TRUE);
 	ShowConsoleCursor(false); //toglie l'underscore che flasha
-	Campo c;
 
-	int last = time();
 	int input = 0;
-	c.inserisci('x', 45, 2);
+
+	Partita p(20,20);
+	Auto a(x,y);
+	Ostacolo o(10, 0, p.getHeight());
+
 	while (1)
 	{
-		//Sleep(10);
+		//Sleep(50);
 		int newInput = getInput();
 		if (newInput != 0)
 		{
 			input = newInput;
 		}
 
-		if (time() - last >= 50)
-		{
-			setCursorPosition(0,0); //toglie i flickering
-			last = time();
+		setCursorPosition(0,0); //toglie i flickering
 
-			processInput(input);
-			input = 0;
+		stampa(a);
+		stampa(o);
 
-			c.inserisci('o', x, y);
+		processInput(input);
+		input = 0;
 
-			setCursorPosition(0,0);
-			c.stampa();
+		a.setPos(x,y);
+		o.moveDown();
 
-			if(c.checkCollisions(x,y))
-			{
-				break;
-			}
-
-			c.aggiorna();
-
-		}
-	}
-
-	while (1)
-	{
-		setCursorPosition(10,10);
-		cout << "perso";
 	}
 
 	return 0;
 }
+
+
 

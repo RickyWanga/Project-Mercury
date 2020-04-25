@@ -1,3 +1,4 @@
+#pragma once
 class Entity
 {
     protected:
@@ -8,6 +9,7 @@ class Entity
         };
 
         Pos pos;
+        Pos buffer;
 
         char c;
 
@@ -16,7 +18,9 @@ class Entity
 
         int getX();
         int getY();
-        int setPos(int x, int y);
-        void moveDown();
+        int getBufferX();
+        int getBufferY();
+        void setPos(int x, int y);
+        void setBuffer();
         char getChar();
 };
