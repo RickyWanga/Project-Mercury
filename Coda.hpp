@@ -26,4 +26,6 @@ class Coda
         void checkLimite(int limite);
         void move();
         void stampa();
+
+        bool checkCollisioni(int x, int y);
 };

@@ -122,6 +122,7 @@ int main(int argc, char const *argv[])
 	Partita p(20,20);
 	setCursorPosition(0, p.getHeight());
 	cout << "-----------------------------------------";
+
 	Auto a(x,y);
 	Coda coda(100);
 
@@ -156,9 +157,18 @@ int main(int argc, char const *argv[])
 
 		a.setPos(x,y);
 
-
 		if(time() - t > delay)
 		{
+			if(coda.checkCollisioni(a.getX(), a.getY()))
+			{
+				setCursorPosition(60,1);
+				cout << "collisione:  true";
+			}
+			else
+			{
+				setCursorPosition(60,1);
+				cout << "collisione: false";
+			}
 			t = time();
 			coda.move();
 			coda.checkLimite(p.getHeight());
