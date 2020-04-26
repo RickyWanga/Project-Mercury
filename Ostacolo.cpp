@@ -14,6 +14,6 @@ Ostacolo::Ostacolo()
 
 }
 
-int Hittable::getPoint(){
+int Ostacolo::getPoint(){
     return -(point);
 }
