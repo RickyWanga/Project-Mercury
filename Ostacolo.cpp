@@ -15,7 +15,6 @@ Ostacolo::Ostacolo(int x, int y, int p):Hittable(x, y, p,'O')
 
 Ostacolo::Ostacolo()
 {
-
 }
 
 int Ostacolo::getPoint(){
