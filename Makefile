@@ -1,5 +1,5 @@
-game: main.o Entity.o Auto.o Ostacolo.o Partita.o Coda.o
-	g++ -o game main.o Entity.o Auto.o Ostacolo.o Partita.o Coda.o
+game: main.o Entity.o Auto.o Ostacolo.o Partita.o Coda.o setCursorPosition.o
+	g++ -o game main.o Entity.o Auto.o Ostacolo.o Partita.o Coda.o setCursorPosition.o
 
 main.o: main.cpp
 	g++ -c main.cpp
@@ -18,3 +18,6 @@ Partita.o: Partita.cpp Partita.hpp
 
 Coda.o: Coda.cpp Coda.hpp
 	g++ -c Coda.cpp
+
+setCursorPosition.o: setCursorPosition.cpp setCursorPosition.hpp
+	g++ -c setCursorPosition.cpp

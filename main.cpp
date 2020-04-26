@@ -5,6 +5,7 @@
 #include "Ostacolo.hpp"
 #include "Partita.hpp"
 #include "Coda.hpp"
+#include "setCursorPosition.hpp"
 #include <conio.h>
 #include <chrono>
 
@@ -61,15 +62,6 @@ void cls()
     SetConsoleCursorPosition(hOut, topLeft);
 }
 
-//toglie il flash
-void setCursorPosition(int x, int y)
-{
-    static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    std::cout.flush();
-    COORD coord = { (SHORT)x, (SHORT)y };
-    SetConsoleCursorPosition(hOut, coord);
-}
-
 uint64_t time()
 {
   using namespace std::chrono;
@@ -104,45 +96,6 @@ void processInput(int c)
 		}
 }
 
-void stampa(Entity e)
-{
-	if(e.getBufferX() != e.getX() || e.getBufferY() != e.getY())
-	{
-		setCursorPosition(e.getBufferX(), e.getBufferY());
-		cout << " ";
-		setCursorPosition(e.getX(), e.getY());
-		cout << e.getChar();
-	}
-}
-
-void stampaCoda(Coda coda)
-{
-	for(int i = 0; i<coda.getDim(); i++)
-	{
-		int pos = (coda.getPosTesta()+i)%coda.getMaxDim();
-		stampa(coda.getOstacolo(pos));
-	}
-}
-
-void moveCoda(Coda& coda) //fa il moveDown degli ostacoli
-{
-	for(int i = 0; i<coda.getDim(); i++)
-	{
-		int pos = (coda.getPosTesta()+i)%coda.getMaxDim();
-		coda.getOstacoloByRef(pos).moveDown();
-	}
-}
-
-void checkLimite(Coda& coda, int limite)
-{
-	if(coda.getTesta().getY() > limite && coda.getDim() > 0)
-	{
-		setCursorPosition(coda.getTesta().getBufferX(), coda.getTesta().getBufferY());
-		cout << "-";
-		coda.deq();
-	}
-}
-
 int getRandomX(int l)
 {
 	int r = rand()%l+10;
@@ -167,7 +120,7 @@ int main(int argc, char const *argv[])
 	int input = 0;
 
 	Partita p(20,20);
-	setCursorPosition(0,p.getHeight());
+	setCursorPosition(0, p.getHeight());
 	cout << "-----------------------------------------";
 	Auto a(x,y);
 	Coda coda(100);
@@ -195,8 +148,8 @@ int main(int argc, char const *argv[])
 
 		setCursorPosition(0,0); //toglie i flickering
 
-		stampaCoda(coda);
-		stampa(a);
+		coda.stampa();
+		a.stampa();
 
 		processInput(input);
 		input = 0;
@@ -207,8 +160,8 @@ int main(int argc, char const *argv[])
 		if(time() - t > delay)
 		{
 			t = time();
-			moveCoda(coda);
-			checkLimite(coda, p.getHeight());
+			coda.move();
+			coda.checkLimite(p.getHeight());
 		}
 
 		setCursorPosition(60,0);

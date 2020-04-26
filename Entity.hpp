@@ -24,4 +24,7 @@ class Entity
         void setPos(int x, int y);
         void setBuffer();
         char getChar();
+        void moveDown();
+
+        void stampa();
 };

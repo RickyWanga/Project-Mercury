@@ -13,8 +13,3 @@ Ostacolo::Ostacolo()
 {
 
 }
-
-void Ostacolo::moveDown()
-{
-    setPos(getX(), getY()+1);
-}

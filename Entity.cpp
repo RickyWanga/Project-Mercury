@@ -1,4 +1,9 @@
 #include "Entity.hpp"
+#include <windows.h>
+#include "setCursorPosition.hpp"
+#include <conio.h>
+#include <iostream>
+using namespace std;
 
 Entity::Entity(int x, int y, char _c)
 {
@@ -46,9 +51,23 @@ void Entity::setBuffer()
     buffer.y = pos.y;
 }
 
-
-
 char Entity::getChar()
 {
     return c;
+}
+
+void Entity::moveDown()
+{
+    setPos(getX(), getY()+1);
+}
+
+void Entity::stampa()
+{
+	if(getBufferX() != getX() || getBufferY() != getY())
+	{
+		setCursorPosition(getBufferX(), getBufferY());
+		cout << " ";
+	}
+	setCursorPosition(getX(), getY());
+	cout << getChar();
 }

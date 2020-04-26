@@ -1,10 +1,14 @@
 #include "Coda.hpp"
 #include "Ostacolo.hpp"
+#include <windows.h>
+#include "setCursorPosition.hpp"
+#include <conio.h>
+#include <iostream>
 using namespace std;
 
 Coda::Coda(int n)
 {
-    arr = new Ostacolo[n];
+    arr = new Entity[n];
     max_dim = n;
     testa = 0;
     retro = -1;
@@ -35,7 +39,7 @@ void Coda::deq() //distruggere l'elemento?
     }
 }
 
-void Coda::enq(Ostacolo e)
+void Coda::enq(Entity e)
 {
     if(!isFull())
     {
@@ -45,17 +49,17 @@ void Coda::enq(Ostacolo e)
     }
 }
 
-Ostacolo Coda::getTesta()
+Entity Coda::getTesta()
 {
     return arr[testa];
 }
 
-Ostacolo Coda::getOstacolo(int pos)
+Entity Coda::getOstacolo(int pos)
 {
     return arr[pos];
 }
 
-Ostacolo& Coda::getOstacoloByRef(int pos)
+Entity& Coda::getOstacoloByRef(int pos)
 {
     return arr[pos];
 }
@@ -68,4 +72,32 @@ int Coda::getPosTesta()
 int Coda::getMaxDim()
 {
     return max_dim;
+}
+
+void Coda::checkLimite(int limite)
+{
+    if(getTesta().getY() > limite && getDim() > 0)
+	{
+		setCursorPosition(getTesta().getBufferX(), getTesta().getBufferY());
+		cout << "-";
+		deq();
+	}
+}
+
+void Coda::move() //fa il moveDown degli ostacoli
+{
+	for(int i = 0; i<getDim(); i++)
+	{
+		int pos = (getPosTesta()+i)%getMaxDim();
+		getOstacoloByRef(pos).moveDown();
+	}
+}
+
+void Coda::stampa()
+{
+	for(int i = 0; i<getDim(); i++)
+	{
+		int pos = (getPosTesta()+i)%getMaxDim();
+		getOstacolo(pos).stampa();
+	}
 }
