@@ -98,6 +98,12 @@ void Partita::stampaInfo()
     std::cout << "punteggio: " << punti;
 }
 
+int Partita::getRandomX()
+{
+	int r = rand()%length+10;
+	return r;
+}
+
 
 void Partita::start()
 {
@@ -134,6 +140,8 @@ void Partita::start()
 
 		if(time() - t > delay)
 		{
+            Ostacolo o(getRandomX());
+            coda.enq(o);
 			t = time();
 			coda.move();
 			coda.checkLimite(getHeight());

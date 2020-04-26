@@ -20,6 +20,7 @@ class Partita
     int getHeight();
     void bordo();
     void stampaInfo();
+    int getRandomX();
 
     void processInput(int c);
     uint64_t time();

@@ -58,14 +58,6 @@ void cls()
     SetConsoleCursorPosition(hOut, topLeft);
 }
 
-int getRandomX(int l)
-{
-	int r = rand()%l+10;
-	setCursorPosition(30,0);
-	cout << r;
-	return r;
-}
-
 void setup()
 {
 	HWND console = GetConsoleWindow();
