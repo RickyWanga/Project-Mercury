@@ -23,7 +23,6 @@ void ShowConsoleCursor(bool showFlag)
     SetConsoleCursorInfo(out, &cursorInfo);
 }
 
-//cls ma più veloce
 void cls()
 {
     // Get the Win32 handle representing standard output.
@@ -81,7 +80,24 @@ int main(int argc, char const *argv[])
 {
 	setup();
 
-	Partita p(20,20);
+	setCursorPosition(10, 10);
+	cout << R"(
+
+        _  _                                                                
+       | || |                                                               
+ _   _ | || |_  _ __   __ _    __ _   __ _  _   _   _ __   __ _   ___   ___ 
+| | | || || __|| '__| / _` |  / _` | / _` || | | | | '__| / _` | / __| / _ \
+| |_| || || |_ | |   | (_| | | (_| || (_| || |_| | | |   | (_| || (__ |  __/
+ \__,_||_| \__||_|    \__,_|  \__, | \__,_| \__, | |_|    \__,_| \___| \___|
+                               __/ |         __/ |                          
+                              |___/         |___/                           
+
+)";
+
+	Sleep(2000);
+	cls();
+
+	Partita p(60,40);
 	p.start();
 
 	return 0;
