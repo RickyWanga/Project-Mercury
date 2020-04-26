@@ -6,6 +6,11 @@ Hittable::Hittable(int x, int y, char _c):Entity(x, y, _c)
     point = 50;
 }
 
+// Hittable::Hittable(int x, int y, char _c):Entity(x, y, _c)
+// {
+//     point = 50;
+// }
+
 Hittable::Hittable()
 {
 
