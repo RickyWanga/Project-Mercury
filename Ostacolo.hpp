@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Entity.hpp"
+#include "Hittable.hpp"
 
-class Ostacolo:public Entity
+class Ostacolo:public Hittable
 {
 
     public:
@@ -10,4 +10,5 @@ class Ostacolo:public Entity
         Ostacolo(int x, int y);
         Ostacolo();
         void moveDown();
+        int getPoint();
 };
