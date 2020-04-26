@@ -1,3 +1,4 @@
+#pragma once
 #include "Ostacolo.hpp"
 
 class Coda
@@ -11,6 +12,7 @@ class Coda
 
     public:
         Coda(int n);
+        Coda();
 
         void deq();
         void enq(Entity e);

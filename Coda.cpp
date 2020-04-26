@@ -6,6 +6,10 @@
 #include <iostream>
 using namespace std;
 
+Coda::Coda()
+{
+}
+
 Coda::Coda(int n)
 {
     arr = new Entity[n];

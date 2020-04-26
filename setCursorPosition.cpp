@@ -1,7 +1,17 @@
 #include "setCursorPosition.hpp"
 #include <windows.h>
+#include <conio.h>
 #include <iostream>
 using namespace std;
+
+int getInput()
+{
+	if (kbhit())
+	{
+		return getch();
+	}
+	return 0;
+}
 
 void setCursorPosition(int x, int y)
 {
