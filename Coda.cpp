@@ -101,3 +101,16 @@ void Coda::stampa()
 		getOstacolo(pos).stampa();
 	}
 }
+
+bool Coda::checkCollisioni(int x, int y)
+{
+    for(int i = 0; i<getDim(); i++)
+	{
+		int pos = (getPosTesta()+i)%getMaxDim();
+		if(getOstacolo(pos).getX() == x && getOstacolo(pos).getY() == y)
+        {
+            return true;
+        }
+	}
+    return false;
+}
