@@ -36,3 +36,4 @@ void Queue::deQ()
 
 	delete(tmp);
 }
+

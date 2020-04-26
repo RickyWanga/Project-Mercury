@@ -55,7 +55,7 @@ int main(int argc, char const *argv[])
                                               
 )";
 
-	Sleep(2000);
+	Sleep(3000);
 	cls();
 
 	Partita p(60,40);
