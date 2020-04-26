@@ -45,9 +45,9 @@ void Coda::enq(Ostacolo e)
     }
 }
 
-Ostacolo Coda::getRetro()
+Ostacolo Coda::getTesta()
 {
-    return arr[retro];
+    return arr[testa];
 }
 
 Ostacolo Coda::getOstacolo(int pos)
@@ -60,7 +60,7 @@ Ostacolo& Coda::getOstacoloByRef(int pos)
     return arr[pos];
 }
 
-int Coda::getTesta()
+int Coda::getPosTesta()
 {
     return testa;
 }

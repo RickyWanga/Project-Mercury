@@ -4,10 +4,10 @@
 
 class Ostacolo:public Entity
 {
-    int heightLimit;
 
     public:
-        Ostacolo(int x, int hL);
+        Ostacolo(int x);
+        Ostacolo(int x, int y);
         Ostacolo();
         void moveDown();
 };

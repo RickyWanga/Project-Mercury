@@ -3,8 +3,8 @@
 Entity::Entity(int x, int y, char _c)
 {
     setPos(x,y);
-    buffer.x = 0;
-    buffer.y = 0;
+    buffer.x = 10;
+    buffer.y = 10;
     c = _c;
 }
 

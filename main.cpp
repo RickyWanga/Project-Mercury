@@ -117,28 +117,38 @@ void stampa(Entity e)
 
 void stampaCoda(Coda coda)
 {
-	for(int i = coda.getTesta(); i<coda.getDim(); i++)
+	for(int i = 0; i<coda.getDim(); i++)
 	{
-		stampa(coda.getOstacolo(i%coda.getMaxDim()));
+		int pos = (coda.getPosTesta()+i)%coda.getMaxDim();
+		stampa(coda.getOstacolo(pos));
 	}
 }
 
 void moveCoda(Coda& coda) //fa il moveDown degli ostacoli
 {
-	for(int i = coda.getTesta(); i<coda.getDim(); i++)
+	for(int i = 0; i<coda.getDim(); i++)
 	{
-		coda.getOstacoloByRef(i%coda.getMaxDim()).moveDown();
+		int pos = (coda.getPosTesta()+i)%coda.getMaxDim();
+		coda.getOstacoloByRef(pos).moveDown();
 	}
 }
 
 void checkLimite(Coda& coda, int limite)
 {
-	if(coda.getRetro().getY() >= limite)
+	if(coda.getTesta().getY() > limite && coda.getDim() > 0)
 	{
-		setCursorPosition(coda.getRetro().getBufferX(), coda.getRetro().getBufferY());
-		cout << " ";
+		setCursorPosition(coda.getTesta().getBufferX(), coda.getTesta().getBufferY());
+		cout << "-";
 		coda.deq();
 	}
+}
+
+int getRandomX(int l)
+{
+	int r = rand()%l+10;
+	setCursorPosition(30,0);
+	cout << r;
+	return r;
 }
 
 int main(int argc, char const *argv[])
@@ -149,17 +159,30 @@ int main(int argc, char const *argv[])
     MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1000, 700, TRUE);
 	ShowConsoleCursor(false); //toglie l'underscore che flasha
 
+	srand(static_cast<unsigned int>(time(NULL)));
+
 	uint64_t t = time();
 	uint64_t delay = 200;
 
 	int input = 0;
 
 	Partita p(20,20);
+	setCursorPosition(0,p.getHeight());
+	cout << "-----------------------------------------";
 	Auto a(x,y);
 	Coda coda(100);
-	Ostacolo o(10, p.getHeight());
 
-	coda.enq(o);
+	Ostacolo o1(2, 6);
+	Ostacolo o2(20, 4);
+	Ostacolo o3(12, 3);
+	Ostacolo o4(4, 2);
+	Ostacolo o5(10, 1);
+
+	coda.enq(o1);
+	coda.enq(o2);
+	coda.enq(o3);
+	coda.enq(o4);
+	coda.enq(o5);
 
 	while (1)
 	{
@@ -172,13 +195,14 @@ int main(int argc, char const *argv[])
 
 		setCursorPosition(0,0); //toglie i flickering
 
-		stampa(a);
 		stampaCoda(coda);
+		stampa(a);
 
 		processInput(input);
 		input = 0;
 
 		a.setPos(x,y);
+
 
 		if(time() - t > delay)
 		{
@@ -186,10 +210,10 @@ int main(int argc, char const *argv[])
 			moveCoda(coda);
 			checkLimite(coda, p.getHeight());
 		}
+
+		setCursorPosition(60,0);
+		cout << "dimensione coda: " << coda.getDim();
 	}
 
 	return 0;
 }
-
-
-

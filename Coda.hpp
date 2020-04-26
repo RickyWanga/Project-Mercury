@@ -18,8 +18,8 @@ class Coda
         bool isFull();
         int getDim();
         int getMaxDim();
-        int getTesta();
-        Ostacolo getRetro();
+        int getPosTesta();
+        Ostacolo getTesta();
         Ostacolo getOstacolo(int pos);
         Ostacolo& getOstacoloByRef(int pos);
 };
