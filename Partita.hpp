@@ -16,6 +16,9 @@ class Partita
     uint64_t t;
     uint64_t delay;
 
+    int livello;
+    int danno;
+
     int getLength();
     int getHeight();
     void bordo();

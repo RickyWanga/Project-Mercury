@@ -44,6 +44,9 @@ Partita::Partita(int l, int h)
     t = time();
     delay = 200;
 
+    livello = 1;
+    danno = 20;
+
     bordo();
 }
 
@@ -95,12 +98,18 @@ void Partita::stampaInfo()
     }
 
     setCursorPosition(l,2);
-    std::cout << "punteggio: " << punti;
+    std::cout << "punteggio: " << punti << " ";
+
+    setCursorPosition(l,3);
+    std::cout << "livello: " << livello;
+
+    setCursorPosition(l,4);
+    std::cout << "danno: " << danno;
 }
 
 int Partita::getRandomX()
 {
-	int r = rand()%length+10;
+	int r = rand()%length;
 	return r;
 }
 
@@ -146,8 +155,34 @@ void Partita::start()
 			coda.move();
 			coda.checkLimite(getHeight());
             bordo();
+            punti += 1;
+            if(coda.checkCollisioni(a.getX(), a.getY()))
+            {
+                punti -= danno;
+            }
+            if(punti >= 100)
+            {
+                punti = 0;
+                livello += 1;
+                danno += 20;
+            }
+            if(punti < 0)
+            {
+                punti = 0;
+                livello -= 1;
+                danno -= 20;
+            }
 		}
+
+        if(livello < 1) break;
 
 		stampaInfo();
 	}
+
+    cls();
+    while(1)
+    {
+        setCursorPosition(length/2, height/2);
+        cout << "perso sfigato gay";
+    }
 }
