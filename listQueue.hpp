@@ -1,26 +1,27 @@
 #include "Ostacolo.hpp"
+#include <iostream>
 
 class Queue
 {
 	protected:
-		struct qNode
+		struct Node
 		{
 			Entity n;
-			qNode* next;
-			qNode *head, *tail;
-			qNode(Entity e)
-			{
-				n = e;
-				next = nullptr;
-			}
-			qNode(){};
-		}typedef Node;
+			struct Node *next;
+		}typedef qN;
 
-		qNode qN;
+		qN* head = NULL;
+		qN* tail = NULL;
+		qN* tmp;
+
+		int dim; //dimension of Queue
 
 	public:
-		Queue() = default;
+		Queue();
 
 		void enQ(Entity e);
 		void deQ();
+		// int getDim();
+		// bool isEmpty();
+		// Entity getTesta();
 };

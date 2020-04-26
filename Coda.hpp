@@ -3,7 +3,7 @@
 
 class Coda
 {
-    private:
+    protected:
         Entity *arr;    //array
         int max_dim; //dimensione max
         int testa;   //puntatore alla testa
@@ -14,16 +14,16 @@ class Coda
         Coda(int n);
         Coda();
 
-        void deq();
-        void enq(Entity e);
+        int getDim();
         bool isEmpty();
         bool isFull();
-        int getDim();
-        int getMaxDim();
-        int getPosTesta();
+        void deq();
+        void enq(Entity e);
         Entity getTesta();
         Entity getOstacolo(int pos);
         Entity& getOstacoloByRef(int pos);
+        int getPosTesta();
+        int getMaxDim();
 
         void checkLimite(int limite);
         void move();

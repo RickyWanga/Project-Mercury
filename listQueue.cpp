@@ -1,4 +1,3 @@
-#include "Coda.hpp"
 #include "Ostacolo.hpp"
 #include "listQueue.hpp"
 
@@ -6,34 +5,49 @@ using namespace std;
 
 Queue::Queue()
 {
-	qN.head = qN.tail = nullptr;
+	dim = 0;
 }
 
 void Queue::enQ(Entity e)
 {
-	Node* tmp = new Node(e);
-
-	if (qN.tail == nullptr)
+	if (tail == NULL)
 	{
-		qN.head = qN.tail = tmp;
-		return;
+		tail = (qN *) malloc(sizeof(qN));
+		tail->next = NULL;
+		tail->n = e;
+	}
+	else
+	{
+		tmp = (qN *) malloc(sizeof(qN));
+		tail->next = tmp;
+		tmp->n = e;
+		tmp->next = NULL;
+		tail = tmp;
 	}
 
-	qN.tail->next = tmp;
-	qN.tail = tmp;
+	dim += 1;
 }
 
 void Queue::deQ()
 {
-	if (qN.head == nullptr)
+	tmp = head;
+	if (head == NULL)
+	{
+		dim = 0;
 		return;
+	}
+	else if (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+		free(head); //we use free because its complementary to malloc
+		head = tmp;
+	}
+	else
+	{
+		free(head);
+		head = NULL;
+		tail = NULL;
+	}
 
-	Node* tmp = qN.head;
-	qN.head = qN.head->next;
-
-	if (qN.head == nullptr)
-		qN.tail = nullptr;
-
-	delete(tmp);
+	dim -= 1;
 }
-
