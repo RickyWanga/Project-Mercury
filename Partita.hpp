@@ -18,6 +18,8 @@ class Partita
 
     int getLength();
     int getHeight();
+    void bordo();
+    void stampaInfo();
 
     void processInput(int c);
     uint64_t time();
