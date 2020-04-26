@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Entity.hpp"
+#include "Hittable.hpp"
 
-class Boost:public Entity
+class Boost:public Hittable
 {
 
     public:
@@ -10,4 +10,5 @@ class Boost:public Entity
         Boost(int x, int y);
         Boost();
         void moveDown();
+        int getPoint();
 };
