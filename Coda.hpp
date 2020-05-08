@@ -6,19 +6,19 @@ class Coda
     protected:
         Entity *arr;    //array
         int max_dim; //dimensione max
-        int testa;   //puntatore alla testa
-        int retro;    //puntatore al retro
+        int testa;   //indicie della testa
+        int retro;    //indice del retro
         int dim;     //dimensione attuale
 
     public:
-        Coda(int n);
         Coda();
+        Coda(int n);
 
         int getDim();
         bool isEmpty();
         bool isFull();
-        void deq();
         void enq(Entity e);
+        void deq();
         Entity getTesta();
         Entity getOstacolo(int pos);
         Entity& getOstacoloByRef(int pos);

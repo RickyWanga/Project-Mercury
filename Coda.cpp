@@ -34,15 +34,6 @@ bool Coda::isFull()
     return (dim == max_dim);
 }
 
-void Coda::deq() //distruggere l'elemento?
-{
-    if(!isEmpty())
-    {
-        testa = (testa + 1) % max_dim;
-        dim--;
-    }
-}
-
 void Coda::enq(Entity e)
 {
     if(!isFull())
@@ -50,6 +41,15 @@ void Coda::enq(Entity e)
         retro = (retro + 1) % max_dim;
         arr[retro] = e;
         dim++;
+    }
+}
+
+void Coda::deq() //distruggere l'elemento?
+{
+    if(!isEmpty())
+    {
+        testa = (testa + 1) % max_dim;
+        dim--;
     }
 }
 

@@ -8,13 +8,25 @@ Queue::Queue()
 	dim = 0;
 }
 
+int Queue::getDim()
+{
+	return dim;
+}
+
+bool Queue::isEmpty()
+{
+	return (dim == 0);
+}
+
 void Queue::enQ(Entity e)
 {
+
 	if (tail == NULL)
 	{
 		tail = (qN *) malloc(sizeof(qN));
-		tail->next = NULL;
 		tail->n = e;
+		tail->next = NULL;
+		head = tail;
 	}
 	else
 	{
@@ -50,4 +62,51 @@ void Queue::deQ()
 	}
 
 	dim -= 1;
+}
+
+void Queue::move()
+{
+	tmp = head;
+
+	while (tmp != NULL)
+	{
+		tmp->n.moveDown();
+		tmp = tmp->next;
+	}
+}
+
+void Queue::print()
+{
+	tmp = head;
+
+	while (tmp != NULL)
+	{
+		tmp->n.stampa();
+		tmp = tmp->next;
+	}
+}
+
+void Queue::checkLimit(int limit)
+{
+	if (head->n.getY() > limit && getDim() > 0)
+	{
+		setCursorPosition(head->n.getBufferX(), head->n.getBufferY());
+		cout << "-";
+		deQ();
+	}
+}
+
+bool Queue::checkCollision(int x, int y)
+{
+	tmp = head;
+
+	while (tmp != NULL)
+	{
+		if (tmp->n.getX() == x && tmp->n.getY() == y)
+		{
+			return true;
+		}
+		tmp = tmp->next;
+	}
+	return false;
 }

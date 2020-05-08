@@ -1,4 +1,7 @@
+#pragma once
 #include "Ostacolo.hpp"
+#include "Entity.hpp"
+#include "setCursorPosition.hpp"
 #include <iostream>
 
 class Queue
@@ -12,16 +15,20 @@ class Queue
 
 		qN* head = NULL;
 		qN* tail = NULL;
-		qN* tmp;
+		qN* tmp = NULL;
 
 		int dim; //dimension of Queue
 
 	public:
 		Queue();
 
+		int getDim();
+		bool isEmpty();
 		void enQ(Entity e);
 		void deQ();
-		// int getDim();
-		// bool isEmpty();
-		// Entity getTesta();
+
+		void move();
+		void print();
+		void checkLimit(int l);
+		bool checkCollision(int x, int y);
 };

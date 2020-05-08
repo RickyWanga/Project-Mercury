@@ -1,6 +1,7 @@
 #include "Partita.hpp"
 #include "Auto.hpp"
 #include "Coda.hpp"
+#include "listQueue.hpp"
 #include "Boost.hpp"
 #include "setCursorPosition.hpp"
 #include <iostream>
@@ -35,6 +36,7 @@ Partita::Partita(int l, int h)
 
     a = Auto(length/2, 3*height/4);
     coda = Coda(100);
+    boostQueue = Queue();
 
     punti = 0;
     x = length/2;
@@ -86,24 +88,27 @@ void Partita::stampaInfo()
     setCursorPosition(l,0);
 	std::cout << "dimensione coda: " << coda.getDim();
 
+    setCursorPosition(l, 1);
+    cout << "dimensione lista: " << boostQueue.getDim();
+
     if(coda.checkCollisioni(a.getX(), a.getY()))
     {
-        setCursorPosition(l,1);
+        setCursorPosition(l,2);
         std::cout << "collisione:  true";
     }
     else
     {
-        setCursorPosition(l,1);
+        setCursorPosition(l,2);
         std::cout << "collisione: false";
     }
 
-    setCursorPosition(l,2);
+    setCursorPosition(l,3);
     std::cout << "punteggio: " << punti << " ";
 
-    setCursorPosition(l,3);
+    setCursorPosition(l,4);
     std::cout << "livello: " << livello;
 
-    setCursorPosition(l,4);
+    setCursorPosition(l,5);
     std::cout << "danno: " << danno;
 }
 
@@ -116,17 +121,20 @@ int Partita::getRandomX()
 
 void Partita::start()
 {
-    Ostacolo o1(2, 6);
-	Ostacolo o2(20, 4);
-	Ostacolo o3(12, 3);
-	Ostacolo o4(4, 2);
-	Boost o5(10, 1);
+    // Ostacolo o1(2, 6);
+	// Ostacolo o2(20, 4);
+	// Ostacolo o3(12, 3);
+	// Ostacolo o4(4, 2);
+	// Boost b(10, 10);
+    // Boost b2(20);
 
-    coda.enq(o1);
-    coda.enq(o2);
-    coda.enq(o3);
-    coda.enq(o4);
-    coda.enq(o5);
+    // boostQueue.enQ(b);
+    // boostQueue.enQ(b2);
+    // coda.enq(o1);
+    // coda.enq(o2);
+    // coda.enq(o3);
+    // coda.enq(o4);
+    // coda.enq(o5);
 
     while (1)
 	{
@@ -141,6 +149,7 @@ void Partita::start()
 
 		coda.stampa();
 		a.stampa();
+        boostQueue.print();
 
 		processInput(input);
 		input = 0;
@@ -149,24 +158,37 @@ void Partita::start()
 
 		if(time() - t > delay)
 		{
+            bordo();
+			t = time();
+            punti += 1;
+
+            // spawn reduction work in progress
+                Boost b(getRandomX());
+                boostQueue.enQ(b);
+            boostQueue.move();
+            boostQueue.checkLimit(getHeight());
             Ostacolo o(getRandomX());
             coda.enq(o);
-			t = time();
-			coda.move();
-			coda.checkLimite(getHeight());
-            bordo();
-            punti += 1;
-            if(coda.checkCollisioni(a.getX(), a.getY()))
+            coda.move();
+            coda.checkLimite(getHeight());
+
+            setCursorPosition(70, 20);
+            if (boostQueue.checkCollision(a.getX(), a.getY()))
+            {
+                punti += danno;
+            }
+            if (coda.checkCollisioni(a.getX(), a.getY()))
             {
                 punti -= danno;
             }
-            if(punti >= 100)
+
+            if (punti >= 100)
             {
                 punti = 0;
                 livello += 1;
                 danno += 20;
             }
-            if(punti < 0)
+            if (punti < 0)
             {
                 punti = 0;
                 livello -= 1;
