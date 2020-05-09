@@ -33,6 +33,7 @@ Partita::Partita(int l, int h)
 {
     length = l;
     height = h;
+    cBoost = 0;
 
     a = Auto(length/2, 3*height/4);
     coda = Coda(100);
@@ -125,16 +126,13 @@ void Partita::start()
 	// Ostacolo o2(20, 4);
 	// Ostacolo o3(12, 3);
 	// Ostacolo o4(4, 2);
-	// Boost b(10, 10);
-    // Boost b2(20);
-
-    // boostQueue.enQ(b);
-    // boostQueue.enQ(b2);
     // coda.enq(o1);
     // coda.enq(o2);
     // coda.enq(o3);
     // coda.enq(o4);
     // coda.enq(o5);
+	Boost b(getRandomX());
+    boostQueue.enQ(b);
 
     while (1)
 	{
@@ -163,12 +161,21 @@ void Partita::start()
             punti += 1;
 
             // spawn reduction work in progress
+            if (cBoost >= 10)
+            {
                 Boost b(getRandomX());
                 boostQueue.enQ(b);
+                cBoost = 0;
+            }
+            cBoost += livello;
+
             boostQueue.move();
             boostQueue.checkLimit(getHeight());
             Ostacolo o(getRandomX());
-            coda.enq(o);
+
+            if (o.getX() != b.getX())
+                coda.enq(o);
+
             coda.move();
             coda.checkLimite(getHeight());
 

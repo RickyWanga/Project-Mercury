@@ -14,6 +14,7 @@ class Partita
         int x;
         int y;
         int input;
+        int cBoost;
         Auto a;
         Coda coda;
         Queue boostQueue;
