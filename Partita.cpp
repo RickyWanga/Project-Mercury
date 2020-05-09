@@ -107,10 +107,10 @@ void Partita::stampaInfo()
     std::cout << "punteggio: " << punti << " ";
 
     setCursorPosition(l,4);
-    std::cout << "livello: " << livello;
+    std::cout << "livello: " << livello << " ";
 
     setCursorPosition(l,5);
-    std::cout << "danno: " << danno;
+    std::cout << "danno: " << danno << " ";
 }
 
 int Partita::getRandomX()
@@ -131,7 +131,7 @@ void Partita::start()
     // coda.enq(o3);
     // coda.enq(o4);
     // coda.enq(o5);
-	Boost b(getRandomX());
+    Boost b(getRandomX());
     boostQueue.enQ(b);
 
     while (1)
