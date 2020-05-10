@@ -1,3 +1,3 @@
-void setCursorPosition(int x, int y);
+void setCursorPosition(int x, int y, int _color);
 int getInput();
 void cls();

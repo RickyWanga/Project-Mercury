@@ -10,11 +10,11 @@ class Entity
 
         Pos pos;
         Pos buffer;
-
+        int color;
         char c;
 
     public:
-        Entity(int x, int y, char _c);
+        Entity(int x, int y, char _c, int _color);
         Entity();
 
         int getX();
@@ -27,4 +27,5 @@ class Entity
         void moveDown();
 
         void stampa();
+        int getColor();
 };

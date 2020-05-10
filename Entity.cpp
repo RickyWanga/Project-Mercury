@@ -5,12 +5,13 @@
 #include <iostream>
 using namespace std;
 
-Entity::Entity(int x, int y, char _c)
+Entity::Entity(int x, int y, char _c, int _color)
 {
     setPos(x,y);
     buffer.x = 10;
     buffer.y = 10;
     c = _c;
+    int color=_color;
 }
 
 Entity::Entity()
@@ -61,13 +62,19 @@ void Entity::moveDown()
     setPos(getX(), getY()+1);
 }
 
+int Entity::getColor()
+{
+    return color;
+}
+
 void Entity::stampa()
 {
 	if(getBufferX() != getX() || getBufferY() != getY())
 	{
-		setCursorPosition(getBufferX(), getBufferY());
+		setCursorPosition(getBufferX(), getBufferY(),6);
 		cout << " ";
 	}
-	setCursorPosition(getX(), getY());
+	setCursorPosition(getX(), getY(), getColor());
 	cout << getChar();
 }
+

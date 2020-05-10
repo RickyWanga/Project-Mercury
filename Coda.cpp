@@ -82,7 +82,7 @@ void Coda::checkLimite(int limite)
 {
     if(getTesta().getY() > limite && getDim() > 0)
 	{
-		setCursorPosition(getTesta().getBufferX(), getTesta().getBufferY());
+		setCursorPosition(getTesta().getBufferX(), getTesta().getBufferY(),247);
 		cout << "-";
 		deq();
 	}

@@ -19,12 +19,12 @@ void Partita::bordo()
 {
     for(int i = 0; i<length; i++)
     {
-        setCursorPosition(i, height);
+        setCursorPosition(i, height,247);
         cout << "-";
     }
     for(int i = 0; i<height; i++)
     {
-        setCursorPosition(length, i);
+        setCursorPosition(length, i,247);
         cout << "|";
     }
 }
@@ -41,7 +41,7 @@ Partita::Partita(int l, int h)
 
     punti = 0;
     x = length/2;
-    y = 3*height/4;
+    y= height-1;
     input = 0;
 
     t = time();
@@ -67,24 +67,24 @@ void Partita::processInput(int c)
 {
 		// cout << c;
 		switch(c) {
-			case 72:
-                if(y<=0)
-                {
-                    y=0;
-                }else
-                {
-                    y--;
-                }
-				break;
-			case 80:
-				if(y>=height-1)
-                {
-                    y=height-1;
-                }else
-                {
-                    y++;
-                }
-				break;
+			// case 72:
+            //     if(y<=0)
+            //     {
+            //         y=0;
+            //     }else
+            //     {
+            //         y--;
+            //     }
+			// 	break;
+			// case 80:
+			// 	if(y>=height-1)
+            //     {
+            //         y=height-1;
+            //     }else
+            //     {
+            //         y++;
+            //     }
+			// 	break;
 			case 77:
 				if(x>=length-1)
                 {
@@ -110,30 +110,30 @@ void Partita::stampaInfo()
 {
     int l = 70;
 
-    setCursorPosition(l,0);
+    setCursorPosition(l,0,95);
 	std::cout << "dimensione coda: " << coda.getDim();
 
-    setCursorPosition(l, 1);
+    setCursorPosition(l, 1,95);
     cout << "dimensione lista: " << boostQueue.getDim();
 
     if(coda.checkCollisioni(a.getX(), a.getY()))
     {
-        setCursorPosition(l,2);
+        setCursorPosition(l,2,95);
         std::cout << "collisione:  true";
     }
     else
     {
-        setCursorPosition(l,2);
+        setCursorPosition(l,2,95);
         std::cout << "collisione: false";
     }
 
-    setCursorPosition(l,3);
+    setCursorPosition(l,3,95);
     std::cout << "punteggio: " << punti << " ";
 
-    setCursorPosition(l,4);
+    setCursorPosition(l,4,95);
     std::cout << "livello: " << livello << " ";
 
-    setCursorPosition(l,5);
+    setCursorPosition(l,5,95);
     std::cout << "danno: " << danno << " ";
 }
 
@@ -167,8 +167,7 @@ void Partita::start()
 			input = newInput;
 		}
 
-		setCursorPosition(0,0); //toglie i flickering
-
+		setCursorPosition(0,0,0); //toglie i flickering
 		coda.stampa();
 		a.stampa();
         boostQueue.print();
@@ -203,7 +202,7 @@ void Partita::start()
             coda.move();
             coda.checkLimite(getHeight());
 
-            setCursorPosition(70, 20);
+            setCursorPosition(70, 20,0);
             if (boostQueue.checkCollision(a.getX(), a.getY()))
             {
                 punti += danno;
@@ -235,7 +234,7 @@ void Partita::start()
     cls();
     while(1)
     {
-        setCursorPosition(length/2, height/2);
+        setCursorPosition(length/2, height/2,42);
         cout << "perso sfigato gay";
     }
 }
