@@ -68,16 +68,40 @@ void Partita::processInput(int c)
 		// cout << c;
 		switch(c) {
 			case 72:
-				y--;
+                if(y<=0)
+                {
+                    y=0;
+                }else
+                {
+                    y--;
+                }
 				break;
 			case 80:
-				y++;
+				if(y>=height-1)
+                {
+                    y=height-1;
+                }else
+                {
+                    y++;
+                }
 				break;
 			case 77:
-				x++;
+				if(x>=length-1)
+                {
+                    x=length-1;
+                }else
+                {
+                    x++;
+                }
 				break;
 			case 75:
-				x--;
+				if(x<=0)
+                {
+                    x=0;
+                }else
+                {
+                    x--;
+                }
 				break;
 		}
 }
@@ -151,7 +175,7 @@ void Partita::start()
 
 		processInput(input);
 		input = 0;
-
+        
 		a.setPos(x,y);
 
 		if(time() - t > delay)
