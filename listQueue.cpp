@@ -81,7 +81,12 @@ void Queue::print()
 
 	while (tmp != NULL)
 	{
-		tmp->n.stampa();
+		if (!(tmp->stamp))
+		{
+			tmp->n.stampa();
+		}
+		setCursorPosition(tmp->n.getBufferX(), tmp->n.getBufferY(), 6);
+		cout << " ";
 		tmp = tmp->next;
 	}
 }
@@ -104,6 +109,7 @@ bool Queue::checkCollision(int x, int y)
 	{
 		if (tmp->n.getX() == x && tmp->n.getY() == y)
 		{
+			tmp->stamp = true;
 			return true;
 		}
 		tmp = tmp->next;

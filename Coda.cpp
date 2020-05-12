@@ -13,7 +13,9 @@ Coda::Coda()
 Coda::Coda(int n)
 {
     arr = new Entity[n];
+    stampArr[n];
     max_dim = n;
+    k = 0;
     testa = 0;
     retro = -1;
     dim = 0;
@@ -44,7 +46,7 @@ void Coda::enq(Entity e)
     }
 }
 
-void Coda::deq() //distruggere l'elemento?
+void Coda::deq() //distruggere l'elemento(?)
 {
     if(!isEmpty())
     {
@@ -99,11 +101,26 @@ void Coda::move() //fa il moveDown degli ostacoli
 
 void Coda::stampa()
 {
-	for(int i = 0; i<getDim(); i++)
-	{
-		int pos = (getPosTesta()+i)%getMaxDim();
-		getOstacolo(pos).stampa();
-	}
+    //bool found = false;
+
+	for (int i = 0; i<getDim(); i++)
+    {
+        int pos = (getPosTesta()+i)%getMaxDim();
+
+        // for (int j = 0; j<getMaxDim(); j++)
+        // {
+        //     if (pos == stampArr[j])
+        //     {
+        //         found = true;
+        //         break;
+        //     }
+        // }
+
+        //if (!(found))
+        getOstacolo (pos).stampa();
+
+        //found = false;
+    }
 }
 
 bool Coda::checkCollisioni(int x, int y)
@@ -113,6 +130,11 @@ bool Coda::checkCollisioni(int x, int y)
 		int pos = (getPosTesta()+i)%getMaxDim();
 		if(getOstacolo(pos).getX() == x && getOstacolo(pos).getY() == y)
         {
+            // if (k == getMaxDim())
+            //     k = 0;
+
+            // stampArr[k] = pos;
+            // k++;
             return true;
         }
 	}

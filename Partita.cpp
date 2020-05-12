@@ -66,42 +66,34 @@ int Partita::getHeight()
 void Partita::processInput(int c)
 {
 		// cout << c;
-		switch(c) {
-			// case 72:
-            //     if(y<=0)
-            //     {
-            //         y=0;
-            //     }else
-            //     {
-            //         y--;
-            //     }
-			// 	break;
-			// case 80:
-			// 	if(y>=height-1)
-            //     {
-            //         y=height-1;
-            //     }else
-            //     {
-            //         y++;
-            //     }
-			// 	break;
-			case 77:
-				if(x>=length-1)
-                {
-                    x=length-1;
-                }else
-                {
-                    x++;
-                }
+		switch(c)
+        {
+			case 72:
+                if (y<=0)
+                    y=0;
+                else
+                    y--;
 				break;
+
+			case 80:
+				if (y>=height-1)
+                    y=height-1;
+                else
+                    y++;
+				break;
+
+			case 77:
+				if (x>=length-1)
+                    x=length-1;
+                else
+                    x++;
+                break;
+
 			case 75:
-				if(x<=0)
-                {
+				if (x<=0)
                     x=0;
-                }else
-                {
+                else
                     x--;
-                }
 				break;
 		}
 }
@@ -116,7 +108,7 @@ void Partita::stampaInfo()
     setCursorPosition(l, 1,95);
     cout << "dimensione lista: " << boostQueue.getDim();
 
-    if(coda.checkCollisioni(a.getX(), a.getY()))
+    if(coda.checkCollisioni(a.getX(), a.getY()) || boostQueue.checkCollision(a.getX(), a.getY()))
     {
         setCursorPosition(l,2,95);
         std::cout << "collisione:  true";
