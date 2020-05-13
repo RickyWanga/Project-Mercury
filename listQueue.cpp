@@ -93,10 +93,10 @@ void Queue::print()
 
 void Queue::checkLimit(int limit)
 {
-	if (head->n.getY() > limit && getDim() > 0)
+	if (head->n.getY() >= limit && getDim() > 0)
 	{
-		setCursorPosition(head->n.getBufferX(), head->n.getBufferY(),247);
-		cout << "-";
+		setCursorPosition(head->n.getBufferX(), head->n.getBufferY(), 6);
+		cout << " ";
 		deQ();
 	}
 }

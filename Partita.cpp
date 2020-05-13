@@ -19,12 +19,12 @@ void Partita::bordo()
 {
     for(int i = 0; i<length; i++)
     {
-        setCursorPosition(i, height,247);
+        setCursorPosition(i, height, 247);
         cout << "-";
     }
-    for(int i = 0; i<height; i++)
+    for(int i = 0; i<=height; i++)
     {
-        setCursorPosition(length, i,247);
+        setCursorPosition(length, i, 247);
         cout << "|";
     }
 }
@@ -67,20 +67,20 @@ void Partita::processInput(int c)
 {
 		// cout << c;
 		switch(c)
-        {
-			case 72:
-                if (y<=0)
-                    y=0;
-                else
-                    y--;
-				break;
+        {   // Gli spostamenti sono limitati all'asse X
+			// case 72:
+            //     if (y<=0)
+            //         y=0;
+            //     else
+            //         y--;
+			// 	break;
 
-			case 80:
-				if (y>=height-1)
-                    y=height-1;
-                else
-                    y++;
-				break;
+			// case 80:
+			// 	if (y>=height-1)
+            //         y=height-1;
+            //     else
+            //         y++;
+			// 	break;
 
 			case 77:
 				if (x>=length-1)
@@ -95,6 +95,10 @@ void Partita::processInput(int c)
                 else
                     x--;
 				break;
+
+            case 27:
+                livello = 0;
+                break;
 		}
 }
 
@@ -226,7 +230,7 @@ void Partita::start()
     cls();
     while(1)
     {
-        setCursorPosition(length/2, height/2,42);
+        setCursorPosition(length/2, height/2, 16);
         cout << "perso sfigato gay";
     }
 }

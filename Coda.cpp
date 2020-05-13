@@ -13,7 +13,7 @@ Coda::Coda()
 Coda::Coda(int n)
 {
     arr = new Entity[n];
-    stampArr[n];
+    //stampArr[n];
     max_dim = n;
     k = 0;
     testa = 0;
@@ -82,10 +82,10 @@ int Coda::getMaxDim()
 
 void Coda::checkLimite(int limite)
 {
-    if(getTesta().getY() > limite && getDim() > 0)
+    if(getTesta().getY() >= limite && getDim() > 0)
 	{
-		setCursorPosition(getTesta().getBufferX(), getTesta().getBufferY(),247);
-		cout << "-";
+		setCursorPosition(getTesta().getBufferX(), getTesta().getBufferY(), 6);
+		cout << " ";
 		deq();
 	}
 }
@@ -106,7 +106,6 @@ void Coda::stampa()
 	for (int i = 0; i<getDim(); i++)
     {
         int pos = (getPosTesta()+i)%getMaxDim();
-
         // for (int j = 0; j<getMaxDim(); j++)
         // {
         //     if (pos == stampArr[j])
