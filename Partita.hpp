@@ -14,7 +14,7 @@ class Partita
         int x;
         int y;
         int input;
-        int cBoost;
+        int cstamp;
         Auto a;
         Coda coda;
         Queue boostQueue;
@@ -30,6 +30,7 @@ class Partita
         void bordo();
         void stampaInfo();
         int getRandomX();
+        int setRandomSpawn();
 
         void processInput(int c);
         uint64_t time();

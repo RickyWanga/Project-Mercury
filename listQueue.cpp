@@ -67,6 +67,8 @@ void Queue::deQ()
 void Queue::move()
 {
 	tmp = head;
+	if (isEmpty())
+		return;
 
 	while (tmp != NULL)
 	{
@@ -78,21 +80,26 @@ void Queue::move()
 void Queue::print()
 {
 	tmp = head;
+	if (isEmpty())
+		return;
 
 	while (tmp != NULL)
 	{
-		if (!(tmp->stamp))
-		{
-			tmp->n.stampa();
-		}
-		setCursorPosition(tmp->n.getBufferX(), tmp->n.getBufferY(), 6);
-		cout << " ";
+		// if (!(tmp->notstamp))
+		// {
+		// }
+		//setCursorPosition(tmp->n.getBufferX(), tmp->n.getBufferY(), 6);
+		//cout << " ";
+		tmp->n.stampa();
 		tmp = tmp->next;
 	}
 }
 
 void Queue::checkLimit(int limit)
 {
+	if (isEmpty())
+		return;
+
 	if (head->n.getY() >= limit && getDim() > 0)
 	{
 		setCursorPosition(head->n.getBufferX(), head->n.getBufferY(), 6);
@@ -104,12 +111,14 @@ void Queue::checkLimit(int limit)
 bool Queue::checkCollision(int x, int y)
 {
 	tmp = head;
+	if (isEmpty())
+		return NULL;
 
 	while (tmp != NULL)
 	{
 		if (tmp->n.getX() == x && tmp->n.getY() == y)
 		{
-			tmp->stamp = true;
+			//tmp->notstamp = true;
 			return true;
 		}
 		tmp = tmp->next;

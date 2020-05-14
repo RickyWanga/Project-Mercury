@@ -2,14 +2,13 @@
 
 #include "Hittable.hpp"
 
-class Ostacolo:public Hittable
+class Ostacolo:public Entity
 {
 
     public:
         Ostacolo(int x);
-        Ostacolo(int x, int y);
-        Ostacolo(int x, int y, int p);
-        Ostacolo();
-        void moveDown();
-        int getPoint();
+        // Ostacolo(int x, int y);
+        // Ostacolo(int x, int y, int p);
+        // Ostacolo();
+        // int getPoint();
 };

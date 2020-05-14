@@ -9,8 +9,7 @@ class Hittable:public Entity
 
     public:
         Hittable(int x, int y, char _c, int _color);
-        Hittable(int x, int y, int p, char _c, int _color);
-        Hittable();
-        void moveDown();
-        int getPoint();
+        // Hittable(int x, int y, int p, char _c, int _color);
+        // Hittable();
+        // int getPoint();
 };

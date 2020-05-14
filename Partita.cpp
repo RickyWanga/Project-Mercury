@@ -33,7 +33,6 @@ Partita::Partita(int l, int h)
 {
     length = l;
     height = h;
-    cBoost = 0;
 
     a = Auto(length/2, 3*height/4);
     coda = Coda(100);
@@ -43,12 +42,13 @@ Partita::Partita(int l, int h)
     x = length/2;
     y= height-1;
     input = 0;
+    cstamp = 0;
 
     t = time();
     delay = 200;
 
     livello = 1;
-    danno = 20;
+    danno = 10;
 
     bordo();
 }
@@ -66,8 +66,8 @@ int Partita::getHeight()
 void Partita::processInput(int c)
 {
 		// cout << c;
-		switch(c)
-        {   // Gli spostamenti sono limitati all'asse X
+		switch(c)   // Gli spostamenti sono limitati all'asse X
+        {   
 			// case 72:
             //     if (y<=0)
             //         y=0;
@@ -107,10 +107,10 @@ void Partita::stampaInfo()
     int l = 70;
 
     setCursorPosition(l,0,95);
-	std::cout << "dimensione coda: " << coda.getDim();
+	std::cout << "dimensione coda: " << coda.getDim() << " ";
 
     setCursorPosition(l, 1,95);
-    cout << "dimensione lista: " << boostQueue.getDim();
+    cout << "dimensione lista: " << boostQueue.getDim() << " ";
 
     if(coda.checkCollisioni(a.getX(), a.getY()) || boostQueue.checkCollision(a.getX(), a.getY()))
     {
@@ -131,6 +131,12 @@ void Partita::stampaInfo()
 
     setCursorPosition(l,5,95);
     std::cout << "danno: " << danno << " ";
+
+    setCursorPosition(l,6,95);
+    cout << "delay: " << delay << " ";
+
+    setCursorPosition(l,7,95);
+    cout << "spawn counter: " << cstamp << " ";
 }
 
 int Partita::getRandomX()
@@ -139,9 +145,23 @@ int Partita::getRandomX()
 	return r;
 }
 
+int Partita::setRandomSpawn()
+{
+    int level;
+    level = livello - 1;
+
+    if (level >= 18)
+        level = 18;
+
+    int r = rand()% (21 - level) + 1;
+    return r;
+}
+
 
 void Partita::start()
 {
+    int maxspawn = 0;
+    //int cstamp = 0;
     // Ostacolo o1(2, 6);
 	// Ostacolo o2(20, 4);
 	// Ostacolo o3(12, 3);
@@ -165,43 +185,63 @@ void Partita::start()
 
 		setCursorPosition(0,0,0); //toglie i flickering
 		coda.stampa();
-		a.stampa();
         boostQueue.print();
+		a.stampa();
 
 		processInput(input);
 		input = 0;
-        
+
 		a.setPos(x,y);
 
-		if(time() - t > delay)
-		{
+        if (danno >= 100)
+            danno = 100;
+
+        if (delay <= 100)
+            delay = 100;
+        else if (delay >= 200)
+            delay = 200;
+
+        if(time() - t > delay)
+        {
             bordo();
-			t = time();
+            t = time();
             punti += 1;
 
-            // spawn reduction work in progress
-            if (cBoost >= 10)
+            // spawn method work in progress
+            if (setRandomSpawn() == 1)
             {
+                if (cstamp > maxspawn)
+                    maxspawn = cstamp;
+
+                cstamp = 0;
                 Boost b(getRandomX());
                 boostQueue.enQ(b);
-                cBoost = 0;
             }
-            cBoost += livello;
-
+            if (cstamp < 50)
+            {
+                cstamp++;
+            }
+            else
+            {
+                cstamp = 0;
+                Boost b(getRandomX());
+                boostQueue.enQ(b);
+            }
             boostQueue.move();
             boostQueue.checkLimit(getHeight());
+
             Ostacolo o(getRandomX());
-
             if (o.getX() != b.getX())
+            {
                 coda.enq(o);
-
+            }
             coda.move();
             coda.checkLimite(getHeight());
 
-            setCursorPosition(70, 20,0);
+            setCursorPosition(70, 20, 0);
             if (boostQueue.checkCollision(a.getX(), a.getY()))
             {
-                punti += danno;
+                punti += 15;
             }
             if (coda.checkCollisioni(a.getX(), a.getY()))
             {
@@ -212,25 +252,34 @@ void Partita::start()
             {
                 punti = 0;
                 livello += 1;
-                danno += 20;
+                danno += 5;
+                if ((livello % 5) == 0)
+                    delay -= 25;
             }
             if (punti < 0)
             {
+                if (livello <= 20)
+                {
+                    danno -= 5;
+                    if ((livello % 5) == 0)
+                        delay += 25;
+                }
                 punti = 0;
                 livello -= 1;
-                danno -= 20;
             }
-		}
+        }
 
         if(livello < 1) break;
 
-		stampaInfo();
-	}
+        stampaInfo();
+    }
 
     cls();
     while(1)
     {
-        setCursorPosition(length/2, height/2, 16);
+        setCursorPosition(length-10, height/2, 16);
         cout << "perso sfigato gay";
+        // setCursorPosition(length-3, (height/2) + 1, 16);
+        // cout << maxspawn;
     }
 }

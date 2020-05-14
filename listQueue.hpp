@@ -10,7 +10,7 @@ class Queue
 		struct Node
 		{
 			Entity n;
-			bool stamp;
+			//bool notstamp;
 			struct Node *next;
 		}typedef qN;
 
