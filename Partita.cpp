@@ -227,6 +227,7 @@ void Partita::start()
                 Boost b(getRandomX());
                 boostQueue.enQ(b);
             }
+            //////////////////////////////////
             boostQueue.move();
             boostQueue.checkLimit(getHeight());
 
