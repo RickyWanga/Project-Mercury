@@ -11,7 +11,7 @@ Entity::Entity(int x, int y, char _c, int _color)
     buffer.x = 10;
     buffer.y = 10;
     c = _c;
-    int color = _color;
+    color = _color;
 }
 
 Entity::Entity()

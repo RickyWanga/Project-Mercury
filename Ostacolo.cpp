@@ -3,7 +3,7 @@
 
 Ostacolo::Ostacolo(int x):Entity(x, 0, 254, 4)
 {
-    color=4;
+    
 }
 
 // Ostacolo::Ostacolo(int x, int y):Hittable(x, y, 'O',4)

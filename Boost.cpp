@@ -3,7 +3,7 @@
 
 Boost::Boost(int x):Entity(x, 0, 248, 11)
 {
-    color=11;
+    
 }
 
 // Boost::Boost(int x, int y):Hittable(x, y, 'B', 11)

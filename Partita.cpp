@@ -135,8 +135,8 @@ void Partita::stampaInfo()
     setCursorPosition(l,6,95);
     cout << "delay: " << delay << " ";
 
-    setCursorPosition(l,7,95);
-    cout << "spawn counter: " << cstamp << " ";
+    // setCursorPosition(l,7,95);
+    // cout << "spawn counter: " << cstamp << " ";
 }
 
 int Partita::getRandomX()
@@ -207,35 +207,37 @@ void Partita::start()
             t = time();
             punti += 1;
 
-            // spawn method work in progress
+            // spawn method
             if (setRandomSpawn() == 1)
             {
-                if (cstamp > maxspawn)
-                    maxspawn = cstamp;
-
+                // if (cstamp > maxspawn)
+                //     maxspawn = cstamp;
                 cstamp = 0;
                 Boost b(getRandomX());
                 boostQueue.enQ(b);
             }
-            if (cstamp < 50)
-            {
-                cstamp++;
-            }
-            else
-            {
-                cstamp = 0;
-                Boost b(getRandomX());
-                boostQueue.enQ(b);
+            if (livello < 21)
+            { //spawn aggiuntivo in caso ci siano pochi boost all'inizio
+                if (cstamp < 40)
+                {
+                    cstamp++;
+                }
+                else
+                {
+                    cstamp = 0;
+                    Boost b(getRandomX());
+                    boostQueue.enQ(b);
+                }
             }
             //////////////////////////////////
             boostQueue.move();
             boostQueue.checkLimit(getHeight());
 
+            // if (o.getX() != b.getX())
+            // {
+            // }
             Ostacolo o(getRandomX());
-            if (o.getX() != b.getX())
-            {
-                coda.enq(o);
-            }
+            coda.enq(o);
             coda.move();
             coda.checkLimite(getHeight());
 
@@ -254,22 +256,19 @@ void Partita::start()
                 punti = 0;
                 livello += 1;
                 danno += 5;
-                if ((livello % 5) == 0)
-                    delay -= 25;
+                delay -= 5;
             }
             if (punti < 0)
             {
                 if (livello <= 20)
                 {
                     danno -= 5;
-                    if ((livello % 5) == 0)
-                        delay += 25;
+                    delay += 5;
                 }
                 punti = 0;
                 livello -= 1;
             }
         }
-
         if(livello < 1) break;
 
         stampaInfo();
