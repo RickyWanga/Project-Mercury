@@ -1,5 +1,4 @@
 #include "Ostacolo.hpp"
-#include "Partita.hpp"
 
 Ostacolo::Ostacolo(int x):Entity(x, 0, 254, 4)
 {

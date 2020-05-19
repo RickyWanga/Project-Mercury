@@ -1,4 +1,8 @@
 #pragma once
+
+#include <iostream>
+#include "setCursorPosition.hpp"
+
 class Entity
 {
     protected:

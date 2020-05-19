@@ -1,13 +1,6 @@
 #include <iostream>
-#include <windows.h>
-#include "Entity.hpp"
-#include "Auto.hpp"
-#include "Ostacolo.hpp"
+#include "windows.h"
 #include "Partita.hpp"
-#include "Coda.hpp"
-#include "setCursorPosition.hpp"
-#include <conio.h>
-#include <chrono>
 
 using namespace std;
 

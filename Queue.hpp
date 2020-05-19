@@ -1,8 +1,8 @@
 #pragma once
-#include "Ostacolo.hpp"
+
+#include <iostream>
 #include "Entity.hpp"
 #include "setCursorPosition.hpp"
-#include <iostream>
 
 class Queue
 {
@@ -10,14 +10,13 @@ class Queue
 		struct Node
 		{
 			Entity n;
-			//bool notstamp;
+			
 			struct Node *next;
 		}typedef qN;
 
 		qN* head = NULL;
 		qN* tail = NULL;
 		qN* tmp = NULL;
-
 		int dim; //dimension of Queue
 
 	public:

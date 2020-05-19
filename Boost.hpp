@@ -1,6 +1,5 @@
 #pragma once
-
-#include "Hittable.hpp"
+#include "Entity.hpp"
 
 class Boost:public Entity
 {
