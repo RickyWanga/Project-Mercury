@@ -3,27 +3,29 @@
 
 class Coda
 {
-    private:
+    protected:
         Entity *arr;    //array
         int max_dim; //dimensione max
-        int testa;   //puntatore alla testa
-        int retro;    //puntatore al retro
+        int testa;   //indicie della testa
+        int retro;    //indice del retro
         int dim;     //dimensione attuale
+        int k;      //indice globale di stampArr
+        //int stampArr[]; //array dedicato alle posizioni degli elementi che collidono
 
     public:
-        Coda(int n);
         Coda();
+        Coda(int n);
 
-        void deq();
-        void enq(Entity e);
+        int getDim();
         bool isEmpty();
         bool isFull();
-        int getDim();
-        int getMaxDim();
-        int getPosTesta();
+        void enq(Entity e);
+        void deq();
         Entity getTesta();
         Entity getOstacolo(int pos);
         Entity& getOstacoloByRef(int pos);
+        int getPosTesta();
+        int getMaxDim();
 
         void checkLimite(int limite);
         void move();

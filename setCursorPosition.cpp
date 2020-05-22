@@ -13,9 +13,10 @@ int getInput()
 	return 0;
 }
 
-void setCursorPosition(int x, int y)
+void setCursorPosition(int x, int y, int _color)
 {
     static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hOut, _color);
     cout.flush();
     COORD coord = { (SHORT)x, (SHORT)y };
     SetConsoleCursorPosition(hOut, coord);

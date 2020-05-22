@@ -17,7 +17,6 @@ void ShowConsoleCursor(bool showFlag)
     HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
 
     CONSOLE_CURSOR_INFO     cursorInfo;
-
     GetConsoleCursorInfo(out, &cursorInfo);
     cursorInfo.bVisible = showFlag; // set the cursor visibility
     SetConsoleCursorInfo(out, &cursorInfo);
@@ -36,22 +35,25 @@ void setup()
 int main(int argc, char const *argv[])
 {
 	setup();
-
-	setCursorPosition(10, 10);
+	setCursorPosition(10, 10, 4);
 	cout << R"(
 
-        _  _                                                                
-       | || |                                                               
- _   _ | || |_  _ __   __ _    __ _   __ _  _   _   _ __   __ _   ___   ___ 
-| | | || || __|| '__| / _` |  / _` | / _` || | | | | '__| / _` | / __| / _ \
-| |_| || || |_ | |   | (_| | | (_| || (_| || |_| | | |   | (_| || (__ |  __/
- \__,_||_| \__||_|    \__,_|  \__, | \__,_| \__, | |_|    \__,_| \___| \___|
-                               __/ |         __/ |                          
-                              |___/         |___/                           
-
+  _____   ______  _____  _____ _______ _______ _______
+ |_____] |_____/ |     |   |   |______ |          |   
+ |       |    \_ |_____| __|   |______ |_____     |   
+                                                      
+      )            (                  (       )  
+     /(  )       )\ )   (           )\ )  ( /(  
+    )\))(\  (   (()/(   )\      (  (()/(  )\()) 
+    ((_)()\  )\   /(_))(((_)     )\  /(_))((_)\  
+    (_()((_)((_) (_))  )\___  _ ((_)(_)) __ ((_) 
+    |  \/  || __|| _ \((/ __|| | | || _ \\ \ / / 
+    | |\/| || _| |   / | (__ | |_| ||   / \ V /  
+    |_|  |_||___||_|_\  \___| \___/ |_|_\  |_|   42
+                                              
 )";
 
-	Sleep(2000);
+	Sleep(3000);
 	cls();
 
 	Partita p(60,40);

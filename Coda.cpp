@@ -13,7 +13,9 @@ Coda::Coda()
 Coda::Coda(int n)
 {
     arr = new Entity[n];
+    //stampArr[n];
     max_dim = n;
+    k = 0;
     testa = 0;
     retro = -1;
     dim = 0;
@@ -34,15 +36,6 @@ bool Coda::isFull()
     return (dim == max_dim);
 }
 
-void Coda::deq() //distruggere l'elemento?
-{
-    if(!isEmpty())
-    {
-        testa = (testa + 1) % max_dim;
-        dim--;
-    }
-}
-
 void Coda::enq(Entity e)
 {
     if(!isFull())
@@ -50,6 +43,15 @@ void Coda::enq(Entity e)
         retro = (retro + 1) % max_dim;
         arr[retro] = e;
         dim++;
+    }
+}
+
+void Coda::deq() //distruggere l'elemento(?)
+{
+    if(!isEmpty())
+    {
+        testa = (testa + 1) % max_dim;
+        dim--;
     }
 }
 
@@ -80,10 +82,10 @@ int Coda::getMaxDim()
 
 void Coda::checkLimite(int limite)
 {
-    if(getTesta().getY() > limite && getDim() > 0)
+    if(getTesta().getY() >= limite && getDim() > 0)
 	{
-		setCursorPosition(getTesta().getBufferX(), getTesta().getBufferY());
-		cout << "-";
+		setCursorPosition(getTesta().getBufferX(), getTesta().getBufferY(), 6);
+		cout << " ";
 		deq();
 	}
 }
@@ -99,11 +101,25 @@ void Coda::move() //fa il moveDown degli ostacoli
 
 void Coda::stampa()
 {
-	for(int i = 0; i<getDim(); i++)
-	{
-		int pos = (getPosTesta()+i)%getMaxDim();
-		getOstacolo(pos).stampa();
-	}
+    //bool found = false;
+
+	for (int i = 0; i<getDim(); i++)
+    {
+        int pos = (getPosTesta()+i)%getMaxDim();
+        // for (int j = 0; j<getMaxDim(); j++)
+        // {
+        //     if (pos == stampArr[j])
+        //     {
+        //         found = true;
+        //         break;
+        //     }
+        // }
+
+        //if (!(found))
+        getOstacolo (pos).stampa();
+
+        //found = false;
+    }
 }
 
 bool Coda::checkCollisioni(int x, int y)
@@ -113,6 +129,11 @@ bool Coda::checkCollisioni(int x, int y)
 		int pos = (getPosTesta()+i)%getMaxDim();
 		if(getOstacolo(pos).getX() == x && getOstacolo(pos).getY() == y)
         {
+            // if (k == getMaxDim())
+            //     k = 0;
+
+            // stampArr[k] = pos;
+            // k++;
             return true;
         }
 	}
