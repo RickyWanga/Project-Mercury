@@ -5,6 +5,7 @@ using namespace std;
 Queue::Queue()
 {
 	dim = 0;
+	a = Auto();
 }
 
 int Queue::getDim()
@@ -65,9 +66,10 @@ void Queue::deQ()
 
 void Queue::move()
 {
-	tmp = head;
 	if (isEmpty())
 		return;
+
+	tmp = head;
 
 	while (tmp != NULL)
 	{
@@ -78,9 +80,10 @@ void Queue::move()
 
 void Queue::print()
 {
-	tmp = head;
 	if (isEmpty())
 		return;
+
+	tmp = head;
 
 	while (tmp != NULL)
 	{
@@ -109,18 +112,14 @@ void Queue::checkLimit(int limit)
 
 bool Queue::checkCollision(int x, int y)
 {
-	tmp = head;
 	if (isEmpty())
 		return NULL;
-	// togli while
-	while (tmp != NULL)
+
+	tmp = head;
+
+	if (a.checkBounds(tmp->n.getX(), tmp->n.getY()))
 	{
-		if (tmp->n.getX() == x && tmp->n.getY() == y)
-		{
-			//tmp->notstamp = true;
-			return true;
-		}
-		tmp = tmp->next;
+		return true;
 	}
 	return false;
 }

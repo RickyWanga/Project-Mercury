@@ -16,6 +16,7 @@ class Entity
         Pos buffer;
         int color;
         char c;
+        // int points;
 
     public:
         Entity(int x, int y, char _c, int _color);

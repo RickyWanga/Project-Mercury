@@ -1,3 +1,4 @@
+#include "windows.h"
 #include "Partita.hpp"
 
 using namespace std;
@@ -30,11 +31,13 @@ Partita::Partita(int l, int h)
     a = Auto(length/2, 3*height/4);
     obsQueue = Queue();
     boostQueue = Queue();
+    bt = Boost();
+    ot = Ostacolo();
     //coda = Coda(100);
 
     punti = 0;
     x = length/2;
-    y= height-1;
+    y = height-2;
     input = 0;
     cstamp = 0;
 
@@ -42,7 +45,6 @@ Partita::Partita(int l, int h)
     delay = 200;
 
     livello = 1;
-    danno = 10;
 
     bordo();
 }
@@ -124,7 +126,7 @@ void Partita::stampaInfo()
     cout << "livello: " << livello << " ";
 
     setCursorPosition(l,5,95);
-    cout << "danno: " << danno << " ";
+    cout << "danno: " << ot.getDamage() << " ";
 
     setCursorPosition(l,6,95);
     cout << "delay: " << delay << " ";
@@ -155,7 +157,7 @@ int Partita::setRandomSpawn()
 void Partita::start()
 {
     // int maxspawn = 0;
-    //int cstamp = 0;
+    // int cstamp = 0;
     // Ostacolo o1(2, 6);
 	// Ostacolo o2(20, 4);
 	// Ostacolo o3(12, 3);
@@ -177,18 +179,15 @@ void Partita::start()
 			input = newInput;
 		}
 
-		setCursorPosition(0,0,0); //toglie i flickering
+		setCursorPosition(0, 0, 0); //toglie i flickering
 		obsQueue.print();
         boostQueue.print();
-		a.stampa();
+		a.printCar();
 
 		processInput(input);
 		input = 0;
 
-		a.setPos(x,y);
-
-        if (danno >= 100)
-            danno = 100;
+		a.setCar(x,y);
 
         if (delay <= 100)
             delay = 100;
@@ -238,25 +237,25 @@ void Partita::start()
             setCursorPosition(70, 20, 0);
             if (boostQueue.checkCollision(a.getX(), a.getY()))
             {
-                punti += 15;
+                punti += bt.getPoints();
             }
             if (obsQueue.checkCollision(a.getX(), a.getY()))
             {
-                punti -= danno;
+                punti -= ot.getDamage();
             }
 
             if (punti >= 100)
             {
+                ot.upDamage();
                 punti = 0;
                 livello += 1;
-                danno += 5;
                 delay -= 5;
             }
             if (punti < 0)
             {
                 if (livello <= 20)
                 {
-                    danno -= 5;
+                    ot.downDamage();
                     delay += 5;
                 }
                 punti = 0;
@@ -264,16 +263,13 @@ void Partita::start()
             }
         }
         if(livello < 1) break;
-
         stampaInfo();
     }
 
     cls();
-    while(1)
-    {
-        setCursorPosition(length-10, height/2, 16);
-        cout << "perso sfigato gay";
-        // setCursorPosition(length-3, (height/2) + 1, 16);
-        // cout << maxspawn;
-    }
+    setCursorPosition(length-10, height/2, 16);
+     cout << "perso sfigato gay";
+    // setCursorPosition(length-3, (height/2) + 1, 16);
+    // cout << maxspawn;
+    Sleep(1500);
 }
