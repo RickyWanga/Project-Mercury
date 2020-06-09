@@ -1,8 +1,10 @@
 #pragma once
 
-#include <iostream>
+// #include <iostream>
 #include "Entity.hpp"
+#include "Auto.hpp"
 #include "setCursorPosition.hpp"
+
 
 class Queue
 {
@@ -18,6 +20,7 @@ class Queue
 		qN* tail = NULL;
 		qN* tmp = NULL;
 		int dim; //dimension of Queue
+		Auto a;
 
 	public:
 		Queue();

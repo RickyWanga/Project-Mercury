@@ -68,7 +68,7 @@ void Entity::stampa()
 {
 	if(getBufferX() != getX() || getBufferY() != getY())
 	{
-		setCursorPosition(getBufferX(), getBufferY(),6);
+		setCursorPosition(getBufferX(), getBufferY(), 6);
 		cout << " ";
 	}
 	setCursorPosition(getX(), getY(), getColor());

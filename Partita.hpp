@@ -4,11 +4,9 @@
 #include <stdint.h>
 #include <chrono>
 #include "Queue.hpp"
-#include "Auto.hpp"
 #include "Boost.hpp"
 #include "Ostacolo.hpp"
 #include "setCursorPosition.hpp"
-//#include "Coda.hpp"
 
 class Partita
 {
@@ -23,13 +21,15 @@ class Partita
         Auto a;
         Queue obsQueue;
         Queue boostQueue;
+        Boost bt;
+        Ostacolo ot;
         //Coda coda;
 
         uint64_t t;
         uint64_t delay;
 
         int livello;
-        int danno;
+        // int danno;
 
         int getLength();
         int getHeight();
