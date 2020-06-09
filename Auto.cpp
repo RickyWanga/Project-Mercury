@@ -69,7 +69,6 @@ bool Auto::checkBounds(int x, int y)
 {
 	if ((x >= car[0].x && x <= car[2].x) && (y >= car[0].y && y <= car[1].y))
 	{
-
 		return true;
 	}
 
@@ -77,6 +76,6 @@ bool Auto::checkBounds(int x, int y)
 	// cout << x << " " << y << " ";
 	// setCursorPosition(70, 11, 95);
 	// cout << car[0].x << " " << car[2].x << " ";
-	
+
 	return false;
 }

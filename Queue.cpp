@@ -5,7 +5,6 @@ using namespace std;
 Queue::Queue()
 {
 	dim = 0;
-	a = Auto();
 }
 
 int Queue::getDim()
@@ -78,6 +77,11 @@ void Queue::move()
 	}
 }
 
+Entity Queue::getTesta()
+{
+	return head->n;
+}
+
 void Queue::print()
 {
 	if (isEmpty())
@@ -110,16 +114,32 @@ void Queue::checkLimit(int limit)
 	}
 }
 
+// bool Queue::checkCollision2(int x, int y)
+// {
+// 	if (isEmpty())
+// 		return NULL;
+
+// 	tmp = head;
+
+// 	if (a.checkBounds(tmp->n.getX(), tmp->n.getY()))
+// 	{
+// 		return true;
+// 	}
+// 	return false;
+// }
+
 bool Queue::checkCollision(int x, int y)
 {
-	if (isEmpty())
-		return NULL;
-
-	tmp = head;
-
-	if (a.checkBounds(tmp->n.getX(), tmp->n.getY()))
+	if(!isEmpty())
 	{
-		return true;
+		if (getTesta().getX() == x && getTesta().getY() == y)
+		{
+			setCursorPosition(70,10,95);
+        	cout << "collusuone giodo";
+			return true;
+		}
 	}
+	setCursorPosition(70,10,95);
+    cout << "nononononononon";
 	return false;
 }

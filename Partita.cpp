@@ -268,7 +268,7 @@ void Partita::start()
 
     cls();
     setCursorPosition(length-10, height/2, 16);
-     cout << "perso sfigato gay";
+    cout << "perso sfigato gay";
     // setCursorPosition(length-3, (height/2) + 1, 16);
     // cout << maxspawn;
     Sleep(1500);
