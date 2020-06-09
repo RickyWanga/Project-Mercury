@@ -1,5 +1,4 @@
 #include "Boost.hpp"
-#include "Partita.hpp"
 
 Boost::Boost(int x):Entity(x, 0, 248, 11)
 {

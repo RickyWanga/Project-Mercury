@@ -1,10 +1,15 @@
 #pragma once
 
-#include "Auto.hpp"
-#include "Coda.hpp"
-#include "listQueue.hpp"
-#include "Boost.hpp"
+#include <iostream>
 #include <stdint.h>
+#include <chrono>
+#include "Queue.hpp"
+#include "Auto.hpp"
+#include "Boost.hpp"
+#include "Ostacolo.hpp"
+#include "setCursorPosition.hpp"
+//#include "Coda.hpp"
+
 class Partita
 {
     private:
@@ -16,8 +21,9 @@ class Partita
         int input;
         int cstamp;
         Auto a;
-        Coda coda;
+        Queue obsQueue;
         Queue boostQueue;
+        //Coda coda;
 
         uint64_t t;
         uint64_t delay;

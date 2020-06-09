@@ -1,8 +1,5 @@
 #include "Entity.hpp"
-#include <windows.h>
-#include "setCursorPosition.hpp"
-#include <conio.h>
-#include <iostream>
+
 using namespace std;
 
 Entity::Entity(int x, int y, char _c, int _color)
@@ -77,4 +74,3 @@ void Entity::stampa()
 	setCursorPosition(getX(), getY(), getColor());
 	cout << getChar();
 }
-

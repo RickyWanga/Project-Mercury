@@ -9,7 +9,6 @@ class Coda
         int testa;   //indicie della testa
         int retro;    //indice del retro
         int dim;     //dimensione attuale
-        int k;      //indice globale di stampArr
         //int stampArr[]; //array dedicato alle posizioni degli elementi che collidono
 
     public:

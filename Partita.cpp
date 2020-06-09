@@ -1,11 +1,4 @@
 #include "Partita.hpp"
-#include "Auto.hpp"
-#include "Coda.hpp"
-#include "listQueue.hpp"
-#include "Boost.hpp"
-#include "setCursorPosition.hpp"
-#include <iostream>
-#include <chrono>
 
 using namespace std;
 
@@ -35,8 +28,9 @@ Partita::Partita(int l, int h)
     height = h;
 
     a = Auto(length/2, 3*height/4);
-    coda = Coda(100);
+    obsQueue = Queue();
     boostQueue = Queue();
+    //coda = Coda(100);
 
     punti = 0;
     x = length/2;
@@ -107,30 +101,30 @@ void Partita::stampaInfo()
     int l = 70;
 
     setCursorPosition(l,0,95);
-	std::cout << "dimensione coda: " << coda.getDim() << " ";
+	cout << "dimensione coda: " << obsQueue.getDim() << " ";
 
     setCursorPosition(l, 1,95);
     cout << "dimensione lista: " << boostQueue.getDim() << " ";
 
-    if(coda.checkCollisioni(a.getX(), a.getY()) || boostQueue.checkCollision(a.getX(), a.getY()))
+    if(obsQueue.checkCollision(a.getX(), a.getY()) || boostQueue.checkCollision(a.getX(), a.getY()))
     {
         setCursorPosition(l,2,95);
-        std::cout << "collisione:  true";
+        cout << "collisione:  true";
     }
     else
     {
         setCursorPosition(l,2,95);
-        std::cout << "collisione: false";
+        cout << "collisione: false";
     }
 
     setCursorPosition(l,3,95);
-    std::cout << "punteggio: " << punti << " ";
+    cout << "punteggio: " << punti << " ";
 
     setCursorPosition(l,4,95);
-    std::cout << "livello: " << livello << " ";
+    cout << "livello: " << livello << " ";
 
     setCursorPosition(l,5,95);
-    std::cout << "danno: " << danno << " ";
+    cout << "danno: " << danno << " ";
 
     setCursorPosition(l,6,95);
     cout << "delay: " << delay << " ";
@@ -160,7 +154,7 @@ int Partita::setRandomSpawn()
 
 void Partita::start()
 {
-    int maxspawn = 0;
+    // int maxspawn = 0;
     //int cstamp = 0;
     // Ostacolo o1(2, 6);
 	// Ostacolo o2(20, 4);
@@ -184,7 +178,7 @@ void Partita::start()
 		}
 
 		setCursorPosition(0,0,0); //toglie i flickering
-		coda.stampa();
+		obsQueue.print();
         boostQueue.print();
 		a.stampa();
 
@@ -237,16 +231,16 @@ void Partita::start()
             // {
             // }
             Ostacolo o(getRandomX());
-            coda.enq(o);
-            coda.move();
-            coda.checkLimite(getHeight());
+            obsQueue.enQ(o);
+            obsQueue.move();
+            obsQueue.checkLimit(getHeight());
 
             setCursorPosition(70, 20, 0);
             if (boostQueue.checkCollision(a.getX(), a.getY()))
             {
                 punti += 15;
             }
-            if (coda.checkCollisioni(a.getX(), a.getY()))
+            if (obsQueue.checkCollision(a.getX(), a.getY()))
             {
                 punti -= danno;
             }

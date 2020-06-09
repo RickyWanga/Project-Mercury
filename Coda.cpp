@@ -12,8 +12,8 @@ Coda::Coda()
 
 Coda::Coda(int n)
 {
-    arr = new Entity[n];
     //stampArr[n];
+    arr = new Entity[n];
     max_dim = n;
     k = 0;
     testa = 0;
@@ -103,9 +103,10 @@ void Coda::stampa()
 {
     //bool found = false;
 
-	for (int i = 0; i<getDim(); i++)
+    for (int i = 0; i<getDim(); i++)
     {
         int pos = (getPosTesta()+i)%getMaxDim();
+        getOstacolo (pos).stampa();
         // for (int j = 0; j<getMaxDim(); j++)
         // {
         //     if (pos == stampArr[j])
@@ -116,8 +117,6 @@ void Coda::stampa()
         // }
 
         //if (!(found))
-        getOstacolo (pos).stampa();
-
         //found = false;
     }
 }
@@ -131,7 +130,6 @@ bool Coda::checkCollisioni(int x, int y)
         {
             // if (k == getMaxDim())
             //     k = 0;
-
             // stampArr[k] = pos;
             // k++;
             return true;

@@ -1,5 +1,4 @@
-#include "Ostacolo.hpp"
-#include "listQueue.hpp"
+#include "Queue.hpp"
 
 using namespace std;
 
@@ -113,7 +112,7 @@ bool Queue::checkCollision(int x, int y)
 	tmp = head;
 	if (isEmpty())
 		return NULL;
-
+	// togli while
 	while (tmp != NULL)
 	{
 		if (tmp->n.getX() == x && tmp->n.getY() == y)
