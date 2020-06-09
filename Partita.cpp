@@ -37,7 +37,7 @@ Partita::Partita(int l, int h)
 
     punti = 0;
     x = length/2;
-    y = height-2;
+    y = height-1;
     input = 0;
     cstamp = 0;
 
@@ -63,7 +63,7 @@ void Partita::processInput(int c)
 {
 		// cout << c;
 		switch(c)   // Gli spostamenti sono limitati all'asse X
-        {   
+        {
 			// case 72:
             //     if (y<=0)
             //         y=0;
@@ -182,12 +182,12 @@ void Partita::start()
 		setCursorPosition(0, 0, 0); //toglie i flickering
 		obsQueue.print();
         boostQueue.print();
-		a.printCar();
+		a.stampa();
 
 		processInput(input);
 		input = 0;
 
-		a.setCar(x,y);
+		a.setPos(x,y);
 
         if (delay <= 100)
             delay = 100;

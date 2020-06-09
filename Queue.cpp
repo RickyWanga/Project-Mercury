@@ -134,12 +134,8 @@ bool Queue::checkCollision(int x, int y)
 	{
 		if (getTesta().getX() == x && getTesta().getY() == y)
 		{
-			setCursorPosition(70,10,95);
-        	cout << "collusuone giodo";
 			return true;
 		}
 	}
-	setCursorPosition(70,10,95);
-    cout << "nononononononon";
 	return false;
 }
