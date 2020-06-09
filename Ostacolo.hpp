@@ -12,6 +12,7 @@ class Ostacolo:public Entity
         int getDamage();
         void upDamage();
         void downDamage();
+        void setDamage(int d);
         // Ostacolo(int x, int y);
         // Ostacolo(int x, int y, int p);
 };

@@ -61,41 +61,27 @@ int Partita::getHeight()
 
 void Partita::processInput(int c)
 {
-		// cout << c;
-		switch(c)   // Gli spostamenti sono limitati all'asse X
-        {
-			// case 72:
-            //     if (y<=0)
-            //         y=0;
-            //     else
-            //         y--;
-			// 	break;
+    // cout << c;
+    switch(c)   // Gli spostamenti sono limitati all'asse X
+    {
+        case 77:
+            if (x>=length-1)
+                x=length-1;
+            else
+                x++;
+            break;
 
-			// case 80:
-			// 	if (y>=height-1)
-            //         y=height-1;
-            //     else
-            //         y++;
-			// 	break;
+        case 75:
+            if (x<=0)
+                x=0;
+            else
+                x--;
+            break;
 
-			case 77:
-				if (x>=length-1)
-                    x=length-1;
-                else
-                    x++;
-                break;
-
-			case 75:
-				if (x<=0)
-                    x=0;
-                else
-                    x--;
-				break;
-
-            case 27:
-                livello = 0;
-                break;
-		}
+        case 27:
+            livello = 0;
+            break;
+    }
 }
 
 void Partita::stampaInfo()
@@ -141,58 +127,88 @@ int Partita::getRandomX()
 	return r;
 }
 
-int Partita::setRandomSpawn()
+int Partita::getRandomSpawn()
 {
     int level;
-    level = livello - 1;
+    level = livello;
 
-    if (level >= 18)
-        level = 18;
+    if (level >= 10)
+        level = 10;
 
-    int r = rand()% (21 - level) + 1;
+    int r = rand()% (13 - level) + 1;
     return r;
 }
 
+void Partita::stampa()
+{
+    setCursorPosition(0, 0, 0); //toglie i flickering
+    obsQueue.print();
+    boostQueue.print();
+    a.stampa();
+}
+
+void Partita::levelsManager()
+{
+    livello = punti/100;
+    int maxDelay = 200;
+    if(maxDelay-livello*10 >= 0)
+    {
+        delay = maxDelay-livello*10;
+    }
+
+    ot.setDamage(livello*20+20);
+}
+
+void Partita::queueManager()
+{
+    if (getRandomSpawn() == 1)
+    {
+        // if (cstamp > maxspawn)
+        //     maxspawn = cstamp;
+        cstamp = 0;
+        Boost b(getRandomX());
+        boostQueue.enQ(b);
+    }
+    //////////////////////////////////
+    boostQueue.move();
+    boostQueue.checkLimit(getHeight());
+
+    Ostacolo o(getRandomX());
+    obsQueue.enQ(o);
+    obsQueue.move();
+    obsQueue.checkLimit(getHeight());
+
+    setCursorPosition(70, 20, 0);
+    if (boostQueue.checkCollision(a.getX(), a.getY()))
+    {
+        punti += bt.getPoints();
+    }
+    if (obsQueue.checkCollision(a.getX(), a.getY()))
+    {
+        punti -= ot.getDamage();
+    }
+}
 
 void Partita::start()
 {
-    // int maxspawn = 0;
-    // int cstamp = 0;
-    // Ostacolo o1(2, 6);
-	// Ostacolo o2(20, 4);
-	// Ostacolo o3(12, 3);
-	// Ostacolo o4(4, 2);
-    // coda.enq(o1);
-    // coda.enq(o2);
-    // coda.enq(o3);
-    // coda.enq(o4);
-    // coda.enq(o5);
+    //TODO: vedere cosa farci
     Boost b(getRandomX());
     boostQueue.enQ(b);
 
     while (1)
 	{
-		//Sleep(50);
 		int newInput = getInput();
 		if (newInput != 0)
 		{
 			input = newInput;
 		}
 
-		setCursorPosition(0, 0, 0); //toglie i flickering
-		obsQueue.print();
-        boostQueue.print();
-		a.stampa();
+		stampa();
 
 		processInput(input);
 		input = 0;
 
 		a.setPos(x,y);
-
-        if (delay <= 100)
-            delay = 100;
-        else if (delay >= 200)
-            delay = 200;
 
         if(time() - t > delay)
         {
@@ -200,69 +216,11 @@ void Partita::start()
             t = time();
             punti += 1;
 
-            // spawn method
-            if (setRandomSpawn() == 1)
-            {
-                // if (cstamp > maxspawn)
-                //     maxspawn = cstamp;
-                cstamp = 0;
-                Boost b(getRandomX());
-                boostQueue.enQ(b);
-            }
-            if (livello < 21)
-            { //spawn aggiuntivo in caso ci siano pochi boost all'inizio
-                if (cstamp < 40)
-                {
-                    cstamp++;
-                }
-                else
-                {
-                    cstamp = 0;
-                    Boost b(getRandomX());
-                    boostQueue.enQ(b);
-                }
-            }
-            //////////////////////////////////
-            boostQueue.move();
-            boostQueue.checkLimit(getHeight());
-
-            // if (o.getX() != b.getX())
-            // {
-            // }
-            Ostacolo o(getRandomX());
-            obsQueue.enQ(o);
-            obsQueue.move();
-            obsQueue.checkLimit(getHeight());
-
-            setCursorPosition(70, 20, 0);
-            if (boostQueue.checkCollision(a.getX(), a.getY()))
-            {
-                punti += bt.getPoints();
-            }
-            if (obsQueue.checkCollision(a.getX(), a.getY()))
-            {
-                punti -= ot.getDamage();
-            }
-
-            if (punti >= 100)
-            {
-                ot.upDamage();
-                punti = 0;
-                livello += 1;
-                delay -= 5;
-            }
-            if (punti < 0)
-            {
-                if (livello <= 20)
-                {
-                    ot.downDamage();
-                    delay += 5;
-                }
-                punti = 0;
-                livello -= 1;
-            }
+            queueManager();
+            levelsManager();
         }
-        if(livello < 1) break;
+
+        if(punti < 0) break;
         stampaInfo();
     }
 

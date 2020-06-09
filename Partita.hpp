@@ -36,10 +36,12 @@ class Partita
         void bordo();
         void stampaInfo();
         int getRandomX();
-        int setRandomSpawn();
-
+        int getRandomSpawn();
+        void queueManager();
+        void stampa();
         void processInput(int c);
         uint64_t time();
+        void levelsManager();
 
     public:
         Partita(int l, int h);
