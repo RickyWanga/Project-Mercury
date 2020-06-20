@@ -31,8 +31,6 @@ Partita::Partita(int l, int h)
     a = Auto(length/2, 3*height/4);
     obsQueue = Queue();
     boostQueue = Queue();
-    bt = Boost();
-    ot = Ostacolo();
     //coda = Coda(100);
 
     punti = 0;
@@ -112,7 +110,7 @@ void Partita::stampaInfo()
     cout << "livello: " << livello << " ";
 
     setCursorPosition(l,5,95);
-    cout << "danno: " << ot.getDamage() << " ";
+    cout << "danno: " << obsQueue.getTesta().getPoints() << " ";
 
     setCursorPosition(l,6,95);
     cout << "delay: " << delay << " ";
@@ -156,24 +154,23 @@ void Partita::levelsManager()
         delay = maxDelay-livello*10;
     }
 
-    ot.setDamage(livello*20+20);
+    danno = livello*20+20;
 }
 
 void Partita::queueManager()
 {
     if (getRandomSpawn() == 1)
     {
-        // if (cstamp > maxspawn)
-        //     maxspawn = cstamp;
-        cstamp = 0;
-        Boost b(getRandomX());
+        //creazione boost
+        Hittable b(getRandomX(), 15, false);
         boostQueue.enQ(b);
     }
     //////////////////////////////////
     boostQueue.move();
     boostQueue.checkLimit(getHeight());
 
-    Ostacolo o(getRandomX());
+    //creazione ostacolo
+    Hittable o(getRandomX(), danno, true);
     obsQueue.enQ(o);
     obsQueue.move();
     obsQueue.checkLimit(getHeight());
@@ -181,18 +178,18 @@ void Partita::queueManager()
     setCursorPosition(70, 20, 0);
     if (boostQueue.checkCollision(a.getX(), a.getY()))
     {
-        punti += bt.getPoints();
+        punti += boostQueue.getTesta().getPoints();
     }
     if (obsQueue.checkCollision(a.getX(), a.getY()))
     {
-        punti -= ot.getDamage();
+        punti -= obsQueue.getTesta().getPoints();
     }
 }
 
 void Partita::start()
 {
     //TODO: vedere cosa farci
-    Boost b(getRandomX());
+    Hittable b(getRandomX(), 15, false);
     boostQueue.enQ(b);
 
     while (1)
@@ -209,13 +206,13 @@ void Partita::start()
 		input = 0;
 
 		a.setPos(x,y);
-
+        
         if(time() - t > delay)
         {
             bordo();
             t = time();
             punti += 1;
-
+            
             queueManager();
             levelsManager();
         }
@@ -229,5 +226,5 @@ void Partita::start()
     cout << "perso sfigato gay";
     // setCursorPosition(length-3, (height/2) + 1, 16);
     // cout << maxspawn;
-    Sleep(1500);
+    Sleep(3000);
 }

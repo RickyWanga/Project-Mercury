@@ -1,21 +1,38 @@
 #include "Hittable.hpp"
 #include "Partita.hpp"
 
-Hittable::Hittable(int x, int y, char _c,int _color):Entity(x, y, _c, _color)
+Hittable::Hittable(int x, int p, bool ostacolo):Entity(x)
 {
-    point = 50;
+    if(ostacolo) 
+    {
+        Entity::setChar(178);
+        Entity::setColor(4);
+    }
+    else
+    {
+        Entity::setChar('o');
+        Entity::setColor(11);
+    }
+
+    points = p;
 }
 
-// Hittable::Hittable(int x, int y, int p, char _c, int _color):Entity(x, y, _c, _color)
-// {
-//     point = p;
-// }
+Hittable::Hittable()
+{
 
-// Hittable::Hittable()
-// {
+}
 
-// }
+void Hittable::moveDown()
+{
+    Entity::setPos(getX(), getY()+1);
+}
 
-// int Hittable::getPoint(){
-//     return point;
-// }
+int Hittable::getPoints()
+{
+    return points;
+}
+
+void Hittable::setPoints(int p)
+{
+    points = p;
+}

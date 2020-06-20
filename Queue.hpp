@@ -2,6 +2,7 @@
 
 // #include <iostream>
 #include "Entity.hpp"
+#include "Hittable.hpp"
 #include "Auto.hpp"
 #include "setCursorPosition.hpp"
 
@@ -11,7 +12,7 @@ class Queue
 	protected:
 		struct Node
 		{
-			Entity n;
+			Hittable n;
 
 			struct Node *next;
 		}typedef qN;
@@ -26,9 +27,9 @@ class Queue
 
 		int getDim();
 		bool isEmpty();
-		void enQ(Entity e);
+		void enQ(Hittable e);
 		void deQ();
-		Entity getTesta();
+		Hittable getTesta();
 
 		void move();
 		void print();

@@ -16,10 +16,12 @@ class Entity
         Pos buffer;
         int color;
         char c;
-        // int points;
+        void setChar(char _c);
+        void setColor(int _color);
 
     public:
         Entity(int x, int y, char _c, int _color);
+        Entity(int x);
         Entity();
 
         int getX();
@@ -29,7 +31,6 @@ class Entity
         void setPos(int x, int y);
         void setBuffer();
         char getChar();
-        void moveDown();
 
         void stampa();
         int getColor();

@@ -17,7 +17,7 @@ bool Queue::isEmpty()
 	return (dim == 0);
 }
 
-void Queue::enQ(Entity e)
+void Queue::enQ(Hittable e)
 {
 
 	if (tail == NULL)
@@ -77,7 +77,7 @@ void Queue::move()
 	}
 }
 
-Entity Queue::getTesta()
+Hittable Queue::getTesta()
 {
 	return head->n;
 }

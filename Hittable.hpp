@@ -5,11 +5,12 @@
 class Hittable:public Entity
 {
     protected:
-        int point;
+        int points;
 
     public:
-        Hittable(int x, int y, char _c, int _color);
-        // Hittable(int x, int y, int p, char _c, int _color);
-        // Hittable();
-        // int getPoint();
+        Hittable(int x, int p, bool ostacolo);
+        Hittable();
+        int getPoints();
+        void setPoints(int p);
+        void moveDown();
 };

@@ -1,5 +1,5 @@
-game: main.o Entity.o Auto.o Ostacolo.o Partita.o setCursorPosition.o Boost.o Queue.o
-	g++ -o game main.o Entity.o Auto.o Ostacolo.o Partita.o setCursorPosition.o Boost.o Queue.o
+game: main.o Entity.o Auto.o Ostacolo.o Partita.o setCursorPosition.o Boost.o Queue.o Hittable.o
+	g++ -o game main.o Entity.o Auto.o Ostacolo.o Partita.o setCursorPosition.o Boost.o Queue.o Hittable.o
 
 main.o: main.cpp
 	g++ -c main.cpp
@@ -25,8 +25,8 @@ Boost.o: Boost.cpp Boost.hpp
 listQueue.o: Queue.cpp Queue.hpp
 	g++ -c Queue.cpp
 
-# Hittable.o: Hittable.cpp Hittable.hpp
-# 	g++ -c Hittable.cpp
+Hittable.o: Hittable.cpp Hittable.hpp
+	g++ -c Hittable.cpp
 
 # Coda.o: Coda.cpp Coda.hpp
 # 	g++ -c Coda.cpp

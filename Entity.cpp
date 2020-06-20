@@ -11,6 +11,13 @@ Entity::Entity(int x, int y, char _c, int _color)
     color = _color;
 }
 
+Entity::Entity(int x)
+{
+    setPos(x,0);
+    buffer.x = 10;
+    buffer.y = 10;
+}
+
 Entity::Entity()
 {
 
@@ -54,15 +61,22 @@ char Entity::getChar()
     return c;
 }
 
+void Entity::setChar(char _c)
+{
+    c = _c;
+}
+
 int Entity::getColor()
 {
     return color;
 }
 
-void Entity::moveDown()
+void Entity::setColor(int _color)
 {
-    setPos(getX(), getY()+1);
+    color = _color;
 }
+
+
 
 void Entity::stampa()
 {
