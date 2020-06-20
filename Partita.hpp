@@ -18,7 +18,6 @@ class Partita
         int x;
         int y;
         int input;
-        int cstamp;
         Auto a;
         Queue obsQueue;
         Queue boostQueue;
@@ -30,8 +29,6 @@ class Partita
         int livello;
         int danno;
 
-        int getLength();
-        int getHeight();
         void bordo();
         void stampaInfo();
         int getRandomX();

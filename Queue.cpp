@@ -50,7 +50,7 @@ void Queue::deQ()
 	else if (tmp->next != NULL)
 	{
 		tmp = tmp->next;
-		free(head); //we use free because its complementary to malloc
+		free(head);
 		head = tmp;
 	}
 	else
@@ -91,11 +91,6 @@ void Queue::print()
 
 	while (tmp != NULL)
 	{
-		// if (!(tmp->notstamp))
-		// {
-		// }
-		//setCursorPosition(tmp->n.getBufferX(), tmp->n.getBufferY(), 6);
-		//cout << " ";
 		tmp->n.stampa();
 		tmp = tmp->next;
 	}
@@ -113,20 +108,6 @@ void Queue::checkLimit(int limit)
 		deQ();
 	}
 }
-
-// bool Queue::checkCollision2(int x, int y)
-// {
-// 	if (isEmpty())
-// 		return NULL;
-
-// 	tmp = head;
-
-// 	if (a.checkBounds(tmp->n.getX(), tmp->n.getY()))
-// 	{
-// 		return true;
-// 	}
-// 	return false;
-// }
 
 bool Queue::checkCollision(int x, int y)
 {

@@ -25,43 +25,35 @@ void Partita::bordo()
 
 Partita::Partita(int l, int h)
 {
-    length = l;
-    height = h;
+    length = l; //lunghezza campo
+    height = h; //altezza campo
 
-    a = Auto(length/2, 3*height/4);
+    //pos iniziale auto
+    x = length/2; 
+    y = height-1;
+
+    a = Auto(x, y);
+
+    //creazione coda di ostacoli e di boost
     obsQueue = Queue();
     boostQueue = Queue();
-    //coda = Coda(100);
 
-    punti = 0;
-    x = length/2;
-    y = height-1;
     input = 0;
-    cstamp = 0;
 
+    //temporizzazione ticks
     t = time();
     delay = 200;
 
-    danno = 20;
+    //inizializzazione punteggio
+    punti = 0;
+    livello = 0;
 
-    livello = 1;
-
+    //stampa bordo
     bordo();
-}
-
-int Partita::getLength()
-{
-    return length;
-}
-
-int Partita::getHeight()
-{
-    return height;
 }
 
 void Partita::processInput(int c)
 {
-    // cout << c;
     switch(c)   // Gli spostamenti sono limitati all'asse X
     {
         case 77:
@@ -114,17 +106,15 @@ void Partita::stampaInfo()
     if(!obsQueue.isEmpty())
     {
         setCursorPosition(l,5,95);
-        cout << "danno: " << obsQueue.getTesta().getPoints() << "               ";
+        cout << "danno: " << obsQueue.getTesta().getPoints() << " ";
     }
 
 
     setCursorPosition(l,6,95);
     cout << "delay: " << delay << " ";
-
-    // setCursorPosition(l,7,95);
-    // cout << "spawn counter: " << cstamp << " ";
 }
 
+//WARN: si può spostare!!
 int Partita::getRandomX()
 {
 	int r = rand()%length;
@@ -173,13 +163,13 @@ void Partita::queueManager()
     }
     //////////////////////////////////
     boostQueue.move();
-    boostQueue.checkLimit(getHeight());
+    boostQueue.checkLimit(height);
 
     //creazione ostacolo
     Hittable o(getRandomX(), danno, true);
     obsQueue.enQ(o);
     obsQueue.move();
-    obsQueue.checkLimit(getHeight());
+    obsQueue.checkLimit(height);
 
     setCursorPosition(70, 20, 0);
     if (boostQueue.checkCollision(a.getX(), a.getY()))
@@ -229,8 +219,8 @@ void Partita::start()
             bordo();
             t = time();
             punti += 1;
-            queueManager();
             levelsManager();
+            queueManager();
         }
 
         if(punti < 0) break;
