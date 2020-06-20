@@ -41,6 +41,7 @@ class Partita
         void processInput(int c);
         uint64_t time();
         void levelsManager();
+        void end();
 
     public:
         Partita(int l, int h);

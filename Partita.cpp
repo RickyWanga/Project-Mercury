@@ -5,8 +5,8 @@ using namespace std;
 
 uint64_t Partita::time()
 {
-  using namespace std::chrono;
-  return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+    using namespace std::chrono;
+    return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 }
 
 void Partita::bordo()
@@ -41,6 +41,8 @@ Partita::Partita(int l, int h)
 
     t = time();
     delay = 200;
+
+    danno = 20;
 
     livello = 1;
 
@@ -109,8 +111,12 @@ void Partita::stampaInfo()
     setCursorPosition(l,4,95);
     cout << "livello: " << livello << " ";
 
-    setCursorPosition(l,5,95);
-    cout << "danno: " << obsQueue.getTesta().getPoints() << " ";
+    if(!obsQueue.isEmpty())
+    {
+        setCursorPosition(l,5,95);
+        cout << "danno: " << obsQueue.getTesta().getPoints() << "               ";
+    }
+
 
     setCursorPosition(l,6,95);
     cout << "delay: " << delay << " ";
@@ -186,8 +192,19 @@ void Partita::queueManager()
     }
 }
 
+void Partita::end()
+{
+    cls();
+    setCursorPosition(length-10, height/2, 16);
+    cout << "perso sfigato gay";
+    // setCursorPosition(length-3, (height/2) + 1, 16);
+    // cout << maxspawn;
+    Sleep(3000);
+}
+
 void Partita::start()
 {
+
     //TODO: vedere cosa farci
     Hittable b(getRandomX(), 15, false);
     boostQueue.enQ(b);
@@ -206,13 +223,12 @@ void Partita::start()
 		input = 0;
 
 		a.setPos(x,y);
-        
+
         if(time() - t > delay)
         {
             bordo();
             t = time();
             punti += 1;
-            
             queueManager();
             levelsManager();
         }
@@ -220,11 +236,5 @@ void Partita::start()
         if(punti < 0) break;
         stampaInfo();
     }
-
-    cls();
-    setCursorPosition(length-10, height/2, 16);
-    cout << "perso sfigato gay";
-    // setCursorPosition(length-3, (height/2) + 1, 16);
-    // cout << maxspawn;
-    Sleep(3000);
+    end();
 }
