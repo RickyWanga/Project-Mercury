@@ -19,11 +19,11 @@ In compenso aumenta lo spawn rate dei boost, ma non la quantità di punti che si
 Perdendo punti si ritorna ai livelli precedenti.
 
 ### Velocità dell'auto
+Ad ogni tick l'auto si sposta di un'unità in avanti.
 La velocità viene aumentata incrementando i ticks-per-second (TPS). 
 Il delay iniziale tra due tick è 200ms (5 TPS).
 Ad ogni livello questo delay viene decrementato di 10ms. Al livello 19 il gioco va a 100 TPS.
 Dal livello 20 i TPS sono i massimi raggiungibili dal calcolatore che si utilizza per giocare (delay = 0ms).
-Ad ogni tick l'auto si sposta di un'unità in avanti.
 
 ### Ostacoli
 Colpendo un ostacolo si subisce danno, ovvero si perdono punti.
