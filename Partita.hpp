@@ -39,6 +39,7 @@ class Partita
         uint64_t time();
         void levelsManager();
         void end();
+        void checkBound();
 
     public:
         Partita(int l, int h);

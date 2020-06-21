@@ -192,6 +192,12 @@ void Partita::end()
     Sleep(3000);
 }
 
+void Partita::checkBound()
+{
+    if (a.getX() == 0 || a.getX() == (length - 1))
+        punti -= 2;
+}
+
 void Partita::start()
 {
 
@@ -219,6 +225,7 @@ void Partita::start()
             bordo();
             t = time();
             punti += 1;
+            checkBound();
             levelsManager();
             queueManager();
         }
