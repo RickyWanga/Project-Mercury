@@ -20,6 +20,8 @@ void Partita::bordo()
     {
         setCursorPosition(length, i, 247);
         cout << "|";
+        setCursorPosition(0, i, 247);
+        cout << "|";
     }
 }
 
@@ -57,8 +59,8 @@ void Partita::processInput(int c)
     switch(c)   // Gli spostamenti sono limitati all'asse X
     {
         case 77:
-            if (x>=length-1)
-                x=length-1;
+            if (x>=length)
+                x=length;
             else
                 x++;
             break;
@@ -117,7 +119,7 @@ void Partita::stampaInfo()
 //WARN: si può spostare!!
 int Partita::getRandomX()
 {
-	int r = rand()%length;
+	int r = rand() % (length - 1) + 1;
 	return r;
 }
 
@@ -194,7 +196,7 @@ void Partita::end()
 
 void Partita::checkBound()
 {
-    if (a.getX() == 0 || a.getX() == (length - 1))
+    if (a.getX() == 0 || a.getX() == (length))
         punti -= 2;
 }
 
