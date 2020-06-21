@@ -116,7 +116,6 @@ void Partita::stampaInfo()
     cout << "delay: " << delay << " ";
 }
 
-
 int Partita::getRandomX()
 {
 	int r = rand() % (length - 1) + 1;
