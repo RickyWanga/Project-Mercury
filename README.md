@@ -27,7 +27,7 @@ Dal livello 20 i TPS sono i massimi raggiungibili dal calcolatore che si utilizz
 
 ### Ostacoli
 Colpendo un ostacolo si subisce danno, ovvero si perdono punti.
-Il danno iniziale di un ostacolo è pari a 20 punti, ed aumenta di 20 punti ad ogni livello. Non c'è alcun limite superiore.
+Il danno iniziale di un ostacolo è pari a 20, ed aumenta di 20 ad ogni livello. Non c'è alcun limite superiore.
 Ad ogni tick viene generato un ostacolo.
 
 ### Boost
