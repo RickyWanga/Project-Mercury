@@ -114,7 +114,7 @@ void Partita::stampaInfo()
     cout << "delay: " << delay << " ";
 }
 
-//WARN: si può spostare!!
+
 int Partita::getRandomX()
 {
 	int r = rand()%length;
