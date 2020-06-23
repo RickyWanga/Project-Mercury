@@ -1,6 +1,7 @@
 #include "windows.h"
 #include "Partita.hpp"
 
+
 using namespace std;
 
 uint64_t Partita::time()

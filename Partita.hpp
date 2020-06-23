@@ -4,8 +4,6 @@
 #include <stdint.h>
 #include <chrono>
 #include "Queue.hpp"
-#include "Boost.hpp"
-#include "Ostacolo.hpp"
 #include "Hittable.hpp"
 #include "setCursorPosition.hpp"
 
