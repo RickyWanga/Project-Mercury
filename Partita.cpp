@@ -87,10 +87,10 @@ void Partita::stampaInfo()
     if(punti > maxPunti) maxPunti = punti;
 
     setCursorPosition(l,0,95);
-	cout << "dimensione coda: " << obsQueue.getDim() << " ";
+	cout << "numero ostacoli: " << obsQueue.getDim() << " ";
 
     setCursorPosition(l, 1,95);
-    cout << "dimensione lista: " << boostQueue.getDim() << " ";
+    cout << "numero boost: " << boostQueue.getDim() << " ";
 
     if(obsQueue.checkCollision(a.getX(), a.getY()) || boostQueue.checkCollision(a.getX(), a.getY()))
     {
