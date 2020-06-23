@@ -49,6 +49,7 @@ Partita::Partita(int l, int h)
 
     //inizializzazione punteggio
     punti = 0;
+    maxPunti = 0;
     livello = 0;
 
     //stampa bordo
@@ -83,6 +84,8 @@ void Partita::stampaInfo()
 {
     int l = 70;
 
+    if(punti > maxPunti) maxPunti = punti;
+
     setCursorPosition(l,0,95);
 	cout << "dimensione coda: " << obsQueue.getDim() << " ";
 
@@ -112,9 +115,13 @@ void Partita::stampaInfo()
         cout << "danno: " << obsQueue.getTesta().getPoints() << " ";
     }
 
-
     setCursorPosition(l,6,95);
     cout << "delay: " << delay << " ";
+
+    setCursorPosition(l,10,95);
+    cout << "Punteggio massimo raggiunto: ";
+    setCursorPosition(l,12,95);
+    cout << "      " << maxPunti << "      ";
 }
 
 int Partita::getRandomX()

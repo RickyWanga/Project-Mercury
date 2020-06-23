@@ -16,6 +16,7 @@ class Partita
         int x;
         int y;
         int input;
+        int maxPunti;
         Auto a;
         Queue obsQueue;
         Queue boostQueue;
