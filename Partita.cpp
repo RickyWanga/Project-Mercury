@@ -195,10 +195,12 @@ void Partita::end()
 {
     cls();
     setCursorPosition(length-10, height/2, 16);
-    cout << "perso sfigato gay";
+    cout << "Hai perso!";
+    setCursorPosition(length-10, height/2+1, 16);
+    cout << "Punteggio: " << maxPunti << " ";
     // setCursorPosition(length-3, (height/2) + 1, 16);
     // cout << maxspawn;
-    Sleep(3000);
+    Sleep(10000);
 }
 
 void Partita::checkBound()
