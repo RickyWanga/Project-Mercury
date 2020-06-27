@@ -23,7 +23,7 @@ Gli attributi privati sono:
  - **int length**: lunghezza del campo.
  - **int height**: altezza del campo.
  - **int punti**: punteggio attuale della partita.
- - int maxPunti: punteggio massimo raggiunto nella partita.
+ - **int maxPunti**: punteggio massimo raggiunto nella partita.
  - **int x, y**: coordinate dell'auto; la y è fissa in quanto l'auto viene posizionata in fondo al campo di gioco, mentre la x viene modificata in relazione agli input dell'utente.
  - **int input**: l'input dell'utente.
  - **Auto a**: istanza dell'auto.
@@ -64,19 +64,52 @@ Le funzioni pubbliche sono:
 
 Gli attributi e le funzioni protected sono:
 
- - struct Pos: definizione della struttura che contiene le coordinate x e y.
- - Pos pos:le coordinate attuali dell'Entity.
- - Pos buffer:le coordinate dell'Entity precedenti a quella attuale. 
- - int color: il valore del colore di stampa del carattere.
- - char c: il carattere di stampa che rappresenta l'Entity.
- - void setChar(char _c): imposta il carattere di stampa c.
- - void setColor(int _color): imposta il colore di stampa del carattere.
+ - **struct Pos**: definizione della struttura che contiene le coordinate x e y.
+ - **Pos pos**: le coordinate attuali dell'Entity.
+ - **Pos buffer**: le coordinate dell'Entity precedenti a quella attuale. 
+ - **int color**: il valore del colore di stampa del carattere.
+ - **char c**: il carattere di stampa che rappresenta l'Entity.
+ - **void setChar(char _c)**: imposta il carattere di stampa c.
+ - **void setColor(int _color)**: imposta il colore di stampa del carattere.
 
 Le funzioni pubbliche sono: 
 
- - Entity(): costruttore di default.
- - Entity(int x, int y, char _c, int _color): costruttore a cui vengono passate le coordinate x e y, il carattere di stampa e il colore del carattere.
- - Entity(int x): costruttore a cui viene passato solamente la coordinata x. Viene utilizzato dalla classe Hittable.
- - 
+ - **Entity()**: costruttore di default.
+ - **Entity(int x, int y, char _c, int _color)**: costruttore a cui vengono passate le coordinate x e y, il carattere di stampa e il colore del carattere.
+ - **Entity(int x)**: costruttore a cui viene passato solamente la coordinata x. Viene utilizzato dalla classe Hittable.
+ - **int getX()**: ritorna la coordinata x.
+ - **int getY()**: ritorna la coordinata y.
+ - **int getBufferX()**: ritorna la coordinata x della posizione bufferizzata.
+ - **int getBuggerY()**: ritorna la coordinata y della posizione bufferizzata.
+ - **void setPos(int x, int y)**: imposta le coordinate x e y.
+ - **void setPos(int x)**: imposta soltanto la coordinata x.
+ - **void setBuffer()**: salva la posizione attuale nel buffer.
+ - **char getChar()**: ritorna il carattere c.
+ - **void stampa()**: stampa il carattere nella posizione attuale e stampa uno spazio nella posizione del buffer.
+ - **int getColor()**: ritorna il valore del colore.
 
- 
+## Hittable.cpp
+È sottoclasse di Entity ed è la classe con cui vengono istanziati boost e ostacoli.
+L'unica differenza tra un boost e un ostacolo è quella di aggiungere o togliere punti, per questo è stato scelto di implementare un'unica classe dove un booleano permette di scegliere se l'istanza rappresenterà un ostacolo o un boost.
+
+Gli attributi privati sono:
+
+ - **int points**: quanti punti l'Hittable toglie o aggiunge al punteggio in base a se è rispettivamente un ostacolo o un boost.
+
+Le funzioni pubbliche sono:
+
+ - **Hittable()**: costruttore di default.
+ - **Hittable(int x, int p, bool ostacolo)**: costruttore che prende in input la coordinata x, il punteggio p relativo all'Hittable e un booleano che indica se è un ostacolo o un boost.
+ - **int getPoints()**: ritorna il punteggio.
+ - **void setPoints(int p)**: imposta il punteggio.
+ - **void moveDown()**: modifica la posizione dell'Hittable spostandolo di una unità in basso.
+
+## Queue.cpp
+
+## setCursorPosition.cpp
+Racchiude diversi metodi per la gestione degli input e della visualizzazione su terminale. Non è una classe.
+
+ - void setCursorPosition(int x, int y, int _color): metodo che si occupa del posizionamento del cursore nelle coordinate passate in input e del colore.
+ - int getInput(): ritorna il carattere passato in input da tastiera con getch().
+ - void cls(): effettua il clear screen ma in maniera più veloce. 
+
