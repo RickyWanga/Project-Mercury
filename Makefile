@@ -22,5 +22,8 @@ listQueue.o: Queue.cpp Queue.hpp
 Hittable.o: Hittable.cpp Hittable.hpp
 	g++ -c Hittable.cpp
 
+clean:
+	del *.o game
+
 # Coda.o: Coda.cpp Coda.hpp
 # 	g++ -c Coda.cpp
