@@ -4,6 +4,11 @@
 ## Table of contents
 1. [ Main.cpp ](#main)  
 2. [ Partita.cpp ](#partita)
+3. [ Auto.cpp ](#auto)
+4. [ Entity.cpp ](#entity)
+5. [ Hittable.cpp ](#hittable)
+6. [ Queue.cpp ](#queue)
+7. [ setCursorPosition.cpp ](#setCursorPosition)
 
 <a name="main"></a>
 ## Main.cpp
@@ -48,6 +53,7 @@ Le funzioni private sono:
  - **void checkBound()**: controlla se l'auto colpisce il bordo modificando il punteggio di conseguenza.
  - **void end()**: mostra la schermata finale di gioco con il punteggio massimo raggiunto.
 
+<a name="auto"></a>
 ## Auto.cpp
 Rappresenta il veicolo ed è sottoclasse di Entity. 
 
@@ -59,6 +65,7 @@ Le funzioni pubbliche sono:
  
  Non contiene funzioni o attributi privati.
 
+<a name="entity"></a>
 ## Entity.cpp
 È la classe padre di Auto e di Hittable. Si occupa della gestione della posizione degli elementi su schermo, della loro visualizzazione grafica e della stampa.
 
@@ -88,6 +95,7 @@ Le funzioni pubbliche sono:
  - **void stampa()**: stampa il carattere nella posizione attuale e stampa uno spazio nella posizione del buffer.
  - **int getColor()**: ritorna il valore del colore.
 
+<a name="hittable"></a>
 ## Hittable.cpp
 È sottoclasse di Entity ed è la classe con cui vengono istanziati boost e ostacoli.
 L'unica differenza tra un boost e un ostacolo è quella di aggiungere o togliere punti, per questo è stato scelto di implementare un'unica classe dove un booleano permette di scegliere se l'istanza rappresenterà un ostacolo o un boost.
@@ -104,8 +112,10 @@ Le funzioni pubbliche sono:
  - **void setPoints(int p)**: imposta il punteggio.
  - **void moveDown()**: modifica la posizione dell'Hittable spostandolo di una unità in basso.
 
+<a name="queue"></a>
 ## Queue.cpp
 
+<a name="setCursorPosition"></a>
 ## setCursorPosition.cpp
 Racchiude diversi metodi per la gestione degli input e della visualizzazione su terminale. Non è una classe.
 
