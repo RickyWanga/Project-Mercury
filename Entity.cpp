@@ -50,6 +50,12 @@ void Entity::setPos(int x, int y)
     pos.y = y;
 }
 
+void Entity::setPos(int x)
+{
+    setBuffer();
+    pos.x = x;
+}
+
 void Entity::setBuffer()
 {
     buffer.x = pos.x;

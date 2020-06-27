@@ -56,30 +56,6 @@ Partita::Partita(int l, int h)
     bordo();
 }
 
-void Partita::processInput(int c)
-{
-    switch(c)   // Gli spostamenti sono limitati all'asse X
-    {
-        case 77:
-            if (x>=length)
-                x=length;
-            else
-                x++;
-            break;
-
-        case 75:
-            if (x<=0)
-                x=0;
-            else
-                x--;
-            break;
-
-        case 27:
-            livello = 0;
-            break;
-    }
-}
-
 void Partita::stampaInfo()
 {
     int l = 70;
@@ -89,7 +65,7 @@ void Partita::stampaInfo()
     setCursorPosition(l,0,95);
 	cout << "numero ostacoli: " << obsQueue.getDim() << " ";
 
-    setCursorPosition(l, 1,95);
+    setCursorPosition(l,1,95);
     cout << "numero boost: " << boostQueue.getDim() << " ";
 
     if(obsQueue.checkCollision(a.getX(), a.getY()) || boostQueue.checkCollision(a.getX(), a.getY()))
@@ -226,10 +202,8 @@ void Partita::start()
 
 		stampa();
 
-		processInput(input);
+		a.processInput(input, length);
 		input = 0;
-
-		a.setPos(x,y);
 
         if(time() - t > delay)
         {

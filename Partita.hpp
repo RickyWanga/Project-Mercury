@@ -34,7 +34,6 @@ class Partita
         int getRandomSpawn();
         void queueManager();
         void stampa();
-        void processInput(int c);
         uint64_t time();
         void levelsManager();
         void end();

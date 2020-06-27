@@ -29,6 +29,7 @@ class Entity
         int getBufferX();
         int getBufferY();
         void setPos(int x, int y);
+        void setPos(int x);
         void setBuffer();
         char getChar();
 
