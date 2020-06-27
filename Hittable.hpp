@@ -4,7 +4,7 @@
 
 class Hittable:public Entity
 {
-    protected:
+    private:
         int points;
 
     public:
