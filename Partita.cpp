@@ -216,7 +216,7 @@ void Partita::start()
     Hittable b(getRandomX(), 15, false);
     boostQueue.enQ(b);
 
-    while (1)
+    while (punti >= 0)
 	{
 		int newInput = getInput();
 		if (newInput != 0)
@@ -241,7 +241,6 @@ void Partita::start()
             queueManager();
         }
 
-        if(punti < 0) break;
         stampaInfo();
     }
     end();
