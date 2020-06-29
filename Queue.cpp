@@ -22,14 +22,14 @@ void Queue::enQ(Hittable e)
 
 	if (tail == NULL)
 	{
-		tail = (qN *) malloc(sizeof(qN));
+		tail = new qN;
 		tail->n = e;
 		tail->next = NULL;
 		head = tail;
 	}
 	else
 	{
-		tmp = (qN *) malloc(sizeof(qN));
+		tmp = new qN;
 		tail->next = tmp;
 		tmp->n = e;
 		tmp->next = NULL;
@@ -50,12 +50,12 @@ void Queue::deQ()
 	else if (tmp->next != NULL)
 	{
 		tmp = tmp->next;
-		free(head);
+		delete head;
 		head = tmp;
 	}
 	else
 	{
-		free(head);
+		delete head;
 		head = NULL;
 		tail = NULL;
 	}

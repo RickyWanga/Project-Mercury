@@ -115,6 +115,7 @@ Le funzioni pubbliche sono:
 <a name="queue"></a>
 ## Queue.cpp
 
+
 <a name="setCursorPosition"></a>
 ## setCursorPosition.cpp
 Racchiude diversi metodi per la gestione degli input e della visualizzazione su terminale. Non è una classe.
@@ -122,4 +123,3 @@ Racchiude diversi metodi per la gestione degli input e della visualizzazione su 
  - void setCursorPosition(int x, int y, int _color): metodo che si occupa del posizionamento del cursore nelle coordinate passate in input e del colore.
  - int getInput(): ritorna il carattere passato in input da tastiera con getch().
  - void cls(): effettua il clear screen ma in maniera più veloce. 
-
