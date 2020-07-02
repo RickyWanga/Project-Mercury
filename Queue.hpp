@@ -13,7 +13,6 @@ class Queue
 		struct Node
 		{
 			Hittable n;
-
 			struct Node *next;
 		}typedef qN;
 

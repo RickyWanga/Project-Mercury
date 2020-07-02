@@ -114,7 +114,26 @@ Le funzioni pubbliche sono:
 
 <a name="queue"></a>
 ## Queue.cpp
+È la classe utilizzata per la gestione dei boost e degli ostacoli all'interno del gioco.
+Il motivi principali per cui è stata scelta una coda sono la sua semplicità ed efficienza in questo specifico contesto, al contrario di altre possibili implementazioni, che seppur corrette, sarebbero state di una complessità superiore a quella necessaria.
 
+Il campo protected contiene:
+
+ - **struct Node**: per ogni entità viene creato un nodo composto dall'entità stessa e un puntatore al nodo successivo.
+ - **qN* head / tail / tmp**: puntatori di tipo nodo inizializzati a NULL.
+ - **int dim**: dimensione della coda.
+
+Le funzioni pubbliche sono:
+
+ - **Queue()**: costruttore default della coda.
+ - **int getDim()**: funzione che restituisce tramite intero la dimensione dell coda.
+ - **void enQ(Hittable e)**: metodo per l'aggiunta di elementi nella coda.
+ - **void deQ()**: metodo per la rimozione degli elementi dalla coda.
+ - **Hittable getTesta()**: restituisce l'elemento in testa.
+ - **void move()**: aggiorna la posizione degli elementi nella coda.
+ - **void print()**: stampa degli elementi in coda.
+ - **checkLimit(int l)**: controllo dell'altezza di ogni elemento in confronto al limite l.
+ - **checkCollision(int x, int y)**: restituisce un valore di verità se le coordinate dell'elemento in testa coincidono con quelle passate. 
 
 <a name="setCursorPosition"></a>
 ## setCursorPosition.cpp
