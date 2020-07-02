@@ -123,7 +123,7 @@ Il campo protected contiene:
  - **qN* head / tail / tmp**: puntatori di tipo nodo inizializzati a NULL.
  - **int dim**: dimensione della coda.
 
-Le funzioni pubbliche sono:
+I metodi pubblici sono:
 
  - **Queue()**: costruttore default della coda.
  - **int getDim()**: funzione che restituisce tramite intero la dimensione dell coda.
@@ -139,6 +139,6 @@ Le funzioni pubbliche sono:
 ## setCursorPosition.cpp
 Racchiude diversi metodi per la gestione degli input e della visualizzazione su terminale. Non è una classe.
 
- - void setCursorPosition(int x, int y, int _color): metodo che si occupa del posizionamento del cursore nelle coordinate passate in input e del colore.
- - int getInput(): ritorna il carattere passato in input da tastiera con getch().
- - void cls(): effettua il clear screen ma in maniera più veloce. 
+ - **void setCursorPosition(int x, int y, int _color)**: metodo che si occupa del posizionamento del cursore nelle coordinate passate in input e del colore.
+ - **int getInput()**: ritorna il carattere passato in input da tastiera con getch().
+ - **void cls()**: effettua il clear screen ma in maniera più veloce. 
