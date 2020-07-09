@@ -2,7 +2,7 @@
 Semplice terminal-based game automobilistico scritto in C++.
 
 ## Installazione
-Scaricare la cartella di gioco e posizionarsi all'interno di essa. Per compilare i file sorgenti usare il comando make e ./game.exe per avviare il gioco, oppure aprire l'eseguibile game.exe.
+Scaricare la cartella di gioco e posizionarsi all'interno di essa. Per compilare i file sorgenti usare il comando `make` e `./game.exe` per avviare il gioco, oppure aprire l'eseguibile game.exe.
 
 ## Descrizione
 
