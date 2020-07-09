@@ -1,6 +1,10 @@
 # Project-Mercury
 Semplice terminal-based game automobilistico scritto in C++.
 
+<p align="center">
+    <img src=".\screenshot.png" />
+</p>
+
 ## Installazione
 Scaricare la cartella di gioco e posizionarsi all'interno di essa. Per compilare i file sorgenti usare il comando `make` e `./game.exe` per avviare il gioco, oppure aprire l'eseguibile game.exe.
 
