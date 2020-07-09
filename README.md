@@ -6,6 +6,9 @@ Scaricare la cartella di gioco e posizionarsi all'interno di essa. Per compilare
 
 ## Descrizione
 
+### Comandi
+Frecce sinistra e destra per spostare le auto.
+
 ### Il gioco
 L'obiettivo del gioco è raggiungere il punteggio più alto possible.
 Il gioco termina raggiungendo un punteggio negativo.
