@@ -1,8 +1,14 @@
-
 # Documentazione Project-Mercury
 
+## Principali scelte implementative
+L'idea iniziale è stata quella di creare una matrice NxN contenente tutti i caratteri del gioco, ma questa implementazione è stata scartata in quanto durante il moveDown(), che sposta gli Hittable (boost e ostacoli) in basso dando l'impressione che l'auto si sposti in avanti, molte operazioni risultavano inutili in quanto spostavano un carattere vuoto (uno spazio) verso il basso al posto di un altro carattere vuoto, rendendo il costo della funzione quadratico (O(N^2)) e impattando visibilmente sulle performance di gioco.
+Per questo si ha scelto di abbandonare la matrice e usare due code come struttura per la gestione degli Hittable, in quanto questi compaiono dall'alto e scompaiono dal basso tramite una logica FIFO. In questo modo l'operazione moveDown() è passata da avere costo quadratico a costo lineare, in quanto esso è proporzionale soltanto al numero di ostacoli presenti sul campo, che a sua volta è proporzionale soltanto all'altezza del campo (O(n)).
+Inoltre l'unica differenza tra boost e ostacoli è se il punteggio associato viene aggiunto o sottratto dal punteggio attuale, per questo sono implementati entrambi la classe Hittable. Inoltre la gestione della stampa è identica per ogni elemento su schermo, per questo sia Hittable e Auto sono sottoclassi di Entity.
+
+![Diagramma delle classi](./uml.png)
+
 ## Table of contents
-1. [ Main.cpp ](#main)  
+1. [ Main.cpp ](#main)
 2. [ Partita.cpp ](#partita)
 3. [ Auto.cpp ](#auto)
 4. [ Entity.cpp ](#entity)
@@ -12,11 +18,11 @@
 
 <a name="main"></a>
 ## Main.cpp
-Il main.cpp ha il compito di fare il setup delle impostazioni del terminale, come la dimensione e la  rimozione del cursore lampeggiante. Inoltre visualizza su schermo la schermata iniziale, per poi avviare la partita creandone un'istanza della classe e usando il metodo Partita::start(), a cui viene passato il controllo.
+Il main.cpp ha il compito di fare il setup delle impostazioni del terminale, come la dimensione e la rimozione del cursore lampeggiante. Inoltre visualizza su schermo la schermata iniziale, per poi avviare la partita creandone un'istanza della classe e usando il metodo Partita::start(), a cui viene passato il controllo.
 
 <a name="partita"></a>
 ## Partita.cpp
-Partita.cpp è la classe che si occupa della gestione dei diversi componenti di gioco e la loro interazione. Contiene anche le informazioni relative al punteggio e al livello.
+Partita.cpp è la classe che si occupa della gestione dei diversi componenti di gioco e la loro interazione. Contiene anche le informazioni relative al punteggio e al livello. Si ha scelto di usare questa classe e non usare il main in modo tale da renderne i metodi indipendenti in caso si volesse usare il gioco in contesti diversi da questo, in cui basterebbe importare la classe Partita e le altre di conseguenza.
 
 La classe contiene le seguenti funzioni pubbliche:
 
@@ -55,31 +61,31 @@ Le funzioni private sono:
 
 <a name="auto"></a>
 ## Auto.cpp
-Rappresenta il veicolo ed è sottoclasse di Entity. 
+Rappresenta il veicolo ed è sottoclasse di Entity.
 
 Le funzioni pubbliche sono:
 
  - **Auto()**: costruttore di default.
  - **Auto(int x, int y)**: costruttore che prende in input la posizione dell'auto nel campo.
  - **void processInput(int c, int length)**: prende in ingresso l'input da tastiera c e la lunghezza del campo e modifica la coordinata x dell'auto di conseguenza.
- 
- Non contiene funzioni o attributi privati.
+
+Non contiene funzioni o attributi privati.
 
 <a name="entity"></a>
 ## Entity.cpp
-È la classe padre di Auto e di Hittable. Si occupa della gestione della posizione degli elementi su schermo, della loro visualizzazione grafica e della stampa.
+È la classe padre di Auto e di Hittable. Si occupa della gestione della posizione degli elementi su schermo, della loro visualizzazione grafica e della stampa. Contiene la posizione e un buffer per la posizione precedente, in modo tale che durante la nuova stampa del carattere nella posizione precendente venga stampato uno spazio.
 
 Gli attributi e le funzioni protected sono:
 
  - **struct Pos**: definizione della struttura che contiene le coordinate x e y.
  - **Pos pos**: le coordinate attuali dell'Entity.
- - **Pos buffer**: le coordinate dell'Entity precedenti a quella attuale. 
+ - **Pos buffer**: le coordinate dell'Entity precedenti a quella attuale.
  - **int color**: il valore del colore di stampa del carattere.
  - **char c**: il carattere di stampa che rappresenta l'Entity.
  - **void setChar(char _c)**: imposta il carattere di stampa c.
  - **void setColor(int _color)**: imposta il colore di stampa del carattere.
 
-Le funzioni pubbliche sono: 
+Le funzioni pubbliche sono:
 
  - **Entity()**: costruttore di default.
  - **Entity(int x, int y, char _c, int _color)**: costruttore a cui vengono passate le coordinate x e y, il carattere di stampa e il colore del carattere.

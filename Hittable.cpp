@@ -3,7 +3,7 @@
 
 Hittable::Hittable(int x, int p, bool ostacolo):Entity(x)
 {
-    if(ostacolo) 
+    if(ostacolo)
     {
         Entity::setChar(178);
         Entity::setColor(4);

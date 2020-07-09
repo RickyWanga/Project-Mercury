@@ -1,6 +1,9 @@
 # Project-Mercury
 Semplice terminal-based game automobilistico scritto in C++.
 
+## Installazione
+Scaricare la cartella di gioco e posizionarsi all'interno di essa. Per compilare i file sorgenti usare il comando make e ./game.exe per avviare il gioco, oppure aprire l'eseguibile game.exe.
+
 ## Descrizione
 
 ### Il gioco
@@ -14,13 +17,13 @@ Il punteggio permette di aumentare di livello.
 
 ### Livelli
 Ogni 100 punti (partendo da 0) si aumenta di livello.
-Il livello è proporzionale alla difficoltà di gioco: aumentando di livello aumenta la velocità dell'auto e la quantità di danno che si subisce colpendo gli ostacoli. 
+Il livello è proporzionale alla difficoltà di gioco: aumentando di livello aumenta la velocità dell'auto e la quantità di danno che si subisce colpendo gli ostacoli.
 In compenso aumenta lo spawn rate dei boost, ma non la quantità di punti che si ottengono prendendone uno.
 Perdendo punti si ritorna ai livelli precedenti.
 
 ### Velocità dell'auto
 Ad ogni tick l'auto si sposta di un'unità in avanti.
-La velocità viene aumentata incrementando i ticks-per-second (TPS). 
+La velocità viene aumentata incrementando i ticks-per-second (TPS).
 Il delay iniziale tra due tick è 200ms (5 TPS).
 Ad ogni livello questo delay viene decrementato di 10ms. Al livello 19 il gioco va a 100 TPS.
 Dal livello 20 i TPS sono i massimi raggiungibili dal calcolatore che si utilizza per giocare (delay = 0ms).
