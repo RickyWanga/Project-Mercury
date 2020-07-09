@@ -5,7 +5,9 @@ L'idea iniziale è stata quella di creare una matrice NxN contenente tutti i car
 Per questo si ha scelto di abbandonare la matrice e usare due code come struttura per la gestione degli Hittable, in quanto questi compaiono dall'alto e scompaiono dal basso tramite una logica FIFO. In questo modo l'operazione moveDown() è passata da avere costo quadratico a costo lineare, in quanto esso è proporzionale soltanto al numero di ostacoli presenti sul campo, che a sua volta è proporzionale soltanto all'altezza del campo (O(n)).
 Inoltre l'unica differenza tra boost e ostacoli è se il punteggio associato viene aggiunto o sottratto dal punteggio attuale, per questo sono implementati entrambi la classe Hittable. Inoltre la gestione della stampa è identica per ogni elemento su schermo, per questo sia Hittable e Auto sono sottoclassi di Entity.
 
-![Diagramma delle classi](./uml.png)
+<p align="center">
+    ![Diagramma delle classi](./uml.png)
+</p>
 
 ## Table of contents
 1. [ Main.cpp ](#main)
@@ -147,4 +149,4 @@ Racchiude diversi metodi per la gestione degli input e della visualizzazione su 
 
  - **void setCursorPosition(int x, int y, int _color)**: metodo che si occupa del posizionamento del cursore nelle coordinate passate in input e del colore.
  - **int getInput()**: ritorna il carattere passato in input da tastiera con getch().
- - **void cls()**: effettua il clear screen ma in maniera più veloce. 
+ - **void cls()**: effettua il clear screen ma in maniera più veloce.
