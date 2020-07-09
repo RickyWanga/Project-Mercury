@@ -6,7 +6,7 @@ Per questo si ha scelto di abbandonare la matrice e usare due code come struttur
 Inoltre l'unica differenza tra boost e ostacoli è se il punteggio associato viene aggiunto o sottratto dal punteggio attuale, per questo sono implementati entrambi la classe Hittable. Inoltre la gestione della stampa è identica per ogni elemento su schermo, per questo sia Hittable e Auto sono sottoclassi di Entity.
 
 <p align="center">
-    ![Diagramma delle classi](./uml.png)
+    <img src=".\uml.png" />
 </p>
 
 ## Table of contents
